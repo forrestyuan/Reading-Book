@@ -19,7 +19,8 @@
 
 ## 🤔协议
 在计算机通信中，实现达成一个详细的约定，并遵循这一约定进行处理尤为重要。这种约定其实就是协议。
-![OSI七层模型作用](https://raw.githubusercontent.com/forrestyuan/Reading-Book/master/assets/TCP_IP协议.JPG)
+![OSI七层模型作用](https://raw.githubusercontent.com/forrestyuan/Reading-Book/master/assets/TCP_IP协议.JPG)  
+
 |网络体系结构|协议|主要用途|
 |--|--|--|
 |TCP/IP|IP,ICMP,TCP,UDP,HTTP,TELNET,SNMP,SMTP|互联网，局域网|
@@ -28,7 +29,7 @@
 |DECnet|DRP,NSP,SCP....|前DEC小型机|
 |OSI|FTAM,MOTS,VT,CMIS/CMIP,CLNP,CONP|————|
 |XNS|IDP,SPP,PEP|施乐公司网络|
-||||
+
 
 ### 🖊 分组交换协议
 指的是将传输的大数据分割为一个个叫做“包”的较小单位进行传输。
