@@ -19,7 +19,7 @@
 
 ## 🤔协议
 在计算机通信中，实现达成一个详细的约定，并遵循这一约定进行处理尤为重要。这种约定其实就是协议。
-![OSI七层模型作用](https://raw.githubusercontent.com/forrestyuan/Reading-Book/master/TCP_IP协议.JPG)
+![OSI七层模型作用](https://raw.githubusercontent.com/forrestyuan/Reading-Book/master/assets/TCP_IP协议.JPG)
 |网络体系结构|协议|主要用途|
 |--|--|--|
 |TCP/IP|IP,ICMP,TCP,UDP,HTTP,TELNET,SNMP,SMTP|互联网，局域网|
@@ -32,7 +32,7 @@
 
 ### 🖊 分组交换协议
 指的是将传输的大数据分割为一个个叫做“包”的较小单位进行传输。
-![OSI七层模型作用](https://raw.githubusercontent.com/forrestyuan/Reading-Book/master/TCP_IP分组交换协议.JPG)
+![OSI七层模型作用](https://raw.githubusercontent.com/forrestyuan/Reading-Book/master/assets/TCP_IP分组交换协议.JPG)
 ### 🖊 协议的标准化
 为了解决不同厂家制定的协议互相不兼容带来的不便，ISO制定了一个国际标准OSI(Open System Interconnection),虽然没有被普及，但是却被做为制定其它协议的指导方针。
 
@@ -49,7 +49,7 @@
 ||||
 
 #### OSI参考模型中各个分层的作用
-![OSI七层模型作用](https://raw.githubusercontent.com/forrestyuan/Reading-Book/master/TCP_IP七层.JPG)
+![OSI七层模型作用](https://raw.githubusercontent.com/forrestyuan/Reading-Book/master/assets/TCP_IP七层.JPG)
 
 
 ## 🤔传输方式
@@ -69,4 +69,4 @@
 - IP地址： 具有层次性，通信寻址过程中，必不可少。
 - Mac地址: 不具有层次性，真正负责最终通信的地址。  
 
-![地址](https://raw.githubusercontent.com/forrestyuan/Reading-Book/master/TCP_IP地址.JPG)
+![地址](https://raw.githubusercontent.com/forrestyuan/Reading-Book/master/assets/TCP_IP地址.JPG)
