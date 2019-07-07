@@ -177,3 +177,15 @@
     
   ![TCP_IP路径MTU](https://raw.githubusercontent.com/forrestyuan/Reading-Book/master/assets/TCP_IP路径MTU.JPG)
   
+
+* **ARP** 协议  
+    解决地址问题的协议，ARP只适用于IPv4。IPv6可以用ICMPv6替代ARP。  
+    ARP通过IP地址定位MAC地址。
+* **RARP** 协议  
+    与ARP相反，通过MAC地址定位IP地址。如打印机服务器。
+
+* **ICMP**
+    主要功能为确人IP包是否成功送达目的地，通知IP包被废弃的原因，改善网络配置等。eg: ping www.forrestyuan.cn
+
+* **IP隧道**
+    IPv6包追加IPv4首部进行传输。
