@@ -8,6 +8,8 @@
 * WAN(Wide Area Network,广域网) 
 * LAN(Local Area Network,局域网)
 
+![LANWAN](https://raw.githubusercontent.com/forrestyuan/Reading-Book/master/assets/TCP_IP局域网LAN广域网WAN.JPG)
+
 ### 🖊 计算机网络发展的七个阶段
 - 批处理系统： 事先将用户程序和数据装入卡带或磁带，计算机按照一定的顺序读取并执行指令。
 - 分时系统： （20世纪60年代）多台终端共用一台主机，主机轮流给每台终端处理任务。
