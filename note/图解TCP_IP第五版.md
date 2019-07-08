@@ -189,3 +189,31 @@
 
 * **IP隧道**
     IPv6包追加IPv4首部进行传输。
+
+# 📚 路由协议
+## 1. 路由算法  
+路由控制有各种各样的算法，其中最具代表性的就是“距离向量算法(Distance-Vector)”和“链路状态算法(Link-State)”。
+### 🖊距离向量算法（DV）
+指根据距离（代价）和方向决定目标网络或目标主机位置的一种方法。路由器之间可以呼唤目标网络的方向距离相关的信息。
+### 🖊链路状态算法（LS）
+路由器在了解网络整体链接状态的基础上生成路由控制表的一种方法。该方法中，每个路由器必须保持同样的信息才能正确做出路由选择。
+
+# 📚 网络安全
+## 1. 加密技术基础
+**对称加密**  
+加密和解密使用相同的密钥叫做对称加密方式。常见有：AES,DES
+
+**公钥加密**  
+加密和解密过程中分别使用不相同的密钥（公钥或私钥）叫做对称加密方式。常见有：RSA， DH，椭圆曲线等加密方法
+
+
+![加密](https://raw.githubusercontent.com/forrestyuan/Reading-Book/master/assets/TCP_IP加密.JPG)
+
+## 2. 安全协议
+
+**VPN 和IPsec**  
+构建VPN时，最长被使用的是IPsec。指在IP首部后追加“封装安全有效荷载”和“认证首部”，从而对此后的数据进行加密。
+
+**TLS/SSL 和HTTPS**  
+Web中可以通过TLS/SSL对HTTP进行加密。使用TLS/SSL的HTTP通信叫做HTTPS通信。HTTPS中采用对称加密方式。而在发送公钥时采用的是公钥加密方式。  
+![HTTPS](https://raw.githubusercontent.com/forrestyuan/Reading-Book/master/assets/TCP_IPHTTPS.JPG)
