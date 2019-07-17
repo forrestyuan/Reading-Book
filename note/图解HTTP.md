@@ -112,8 +112,58 @@ Last-Modified|资源最后修改的日期时间
 
 除了以上47中首部字段，还有Cookie、Set-Cookie 和 Content-Disposition等在其他RFC中定义的首部字段。
 
+#### 🍪为Cookie服务的首部字段
+管理服务器与客户端之间状态的Cookie,虽然没有被编入标准化HTTP/1.1的RFC2616中，但在web网站方面得到了广泛的使用。  
+* **为Cookie服务的首部字段**
+首部字段名|说明|首部类型
+--|--|--
+Set-Cookie|开始状态管理所使用的Cookie信息|响应首部字段
+Cookie|服务器接收到的Cookie信息|请求首部字段
+<details>
+  <summary>Set-Cookie字段的属性</summary>
+
+  * NAME=VALUE: 设置Cookie的键值对（必须项）
+  * expire=DATE: Cookie的有效期，默认会话期限内
+  * path=PATH: 将服务器上的文件目录作为Cookie的使用对象（默认为文档所在文件目录）
+  * domain=域名: 作为Cookie适用对象的域名（默认服务器的域名）
+  * Secure: 仅在HTTPS安全通信时才会发送Cookie
+  * HttpOnly: 加以限制，使得Cookie不被JS脚本访问，防止XSS。
+</details>
+
+#### 🔗其它首部字段
+
+HTTP首部字段是可以自行拓展的。所以在WEB服务器和浏览器的应用上，会出现各种非标准的首部字段。
+
+* **X-Frame-Options**  
+
+HTTP响应首部。控制网站内容在其他web网站的Frame标签内的显示问题。防止点击劫持攻击。  
+
+1. DENY:拒绝
+2. SAMEORIGIN: 仅同源域名下的页面匹配时许可。  
+例如在apache2.conf的配置实例：
+
+  ```bash
+  <IfModule mod_header.c>
+    Header append X-FRAME-OPTIONS "SAMEORIGIN"
+  </IfModule>
+  ```
+
+* **X-XSS-Protection**  
+HTTP相应首部。针对跨站脚本攻击XSS的一种对策，用于控制浏览器XSS防护机制的开关。  
+首部字段X-XSS-Protection 可知的字段值如下：  
+0：将XSS过滤设置成无效状态
+1：将XSS过滤设置成有效状态
+* **DNT**  
+HTTP请求首部。DNT为Do Not Track的简称。意味拒绝个人信息被收集，表示拒绝精准广告追踪的一种方法。  
+DNT可指定的字段值为：  
+0：同意被追踪  
+1：拒绝被追踪
+* **P3P**
+
+保护用户隐私的一种手段，将用户的个人隐私变成一种仅供程序可理解的形式。
 
 ### 🖊 请求方法
+
 * GET : 获取资源（HTTP1.1、1.0支持）  
 用来请求访问已被URI识别的资源。
 * POST : 传输实体主体（HTTP1.1、1.0支持）  
@@ -185,3 +235,13 @@ HTTP报文大致可分为报文首部和报文主体两块。两者有空行划�
 
 ### 🖊隧道
 隧道可按要求建立起一条与其他服务器的通信线路，届时使用SSL等加密手段进行通信。隧道的目的是确保客户端能与服务器进行安全的通信。
+
+## 📚 确保Web安全的HTTPS
+
+**加密处理防止被窃听**：
+
+* 通信的加密 SSL/TLS
+* 内容的加密
+
+通常HTTP直接和TCP通信。当使用SSL时，就变成了HTTP先和SSL通信，再由SSL和TCP通信了。  
+SSL是独立于HTTP的协议，除了HTTP协议外，诸如SMTP、Telnet等协议均可配合SSL协议使用。 
