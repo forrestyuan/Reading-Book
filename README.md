@@ -2,7 +2,7 @@
 > 读书长知，思考长智，虚心长识，应用长技。
 ## 2019 年度阅读（进行中....）
 <details>
-<summary>技术类：</summary>
+<summary>技术类书籍：</summary>
 
 - [ ] ~~TCP/IP详解~~
 - [ ] 图解HTTP
@@ -10,7 +10,7 @@
 - [ ] 你不知道的JS（上、中、下、三卷）
 </details>
 <details>
-<summary>非技术类：</summary>
+<summary>非技术书籍：</summary>
 
 - [ ] 一只特立独行的猪（王小波）
 - [ ] 一路直行，我的企业理想（李玉琢）
@@ -27,6 +27,12 @@
 - [ ] 从零开始做运营
 - [ ] 兄弟
 - [ ] 许三观卖血记
+</details>
+
+<details>
+<summary>额外阅览（Non-Book）：</summary>
+
+- [x] [牛客网网络知识题记](https://github.com/forrestyuan/Reading-Book/tree/master/note/牛客网做题笔记.md)
 </details>
 
 ## 2019 年以前看过的（Past）
