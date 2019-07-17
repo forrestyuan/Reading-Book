@@ -6,7 +6,7 @@
 
 - [ ] ~~TCP/IP详解~~
 - [ ] 图解HTTP
-- [x] 图解TCP/IP 第五版
+- [x] [图解TCP/IP 第五版](https://github.com/forrestyuan/Reading-Book/tree/master/note/图解TCP_IP第五版.md)
 - [ ] 你不知道的JS（上、中、下、三卷）
 </details>
 <details>
@@ -15,14 +15,14 @@
 - [ ] 一只特立独行的猪（王小波）
 - [ ] 一路直行，我的企业理想（李玉琢）
 - [ ] 思维的本质
-- [x] 活着 （余华）
+- [x] [活着 （余华）](https://github.com/forrestyuan/Reading-Book/tree/master/note/活着.md)
 - [ ] 人类2.0
 - [ ] 靠谱
 - [ ] 启示录
 - [ ] 第七天（余华）
 - [ ] 半小时漫画世界史
 - [ ] 半小时漫画中国史
-- [x] 放学后（东野圭吾）
+- [x] [放学后（东野圭吾）](https://github.com/forrestyuan/Reading-Book/tree/master/note/放学后.md)
 - [ ] 局外人
 - [ ] 从零开始做运营
 - [ ] 兄弟
