@@ -1,15 +1,15 @@
 # 记录自己看过的书籍,书到用时方恨少。
 > 读书长知，思考长智，虚心长识，应用长技。
 ## 2019 年度阅读（进行中....）
-<detail>
+<details>
 <summary>技术类：</summary>
 
 - [ ] ~~TCP/IP详解~~
 - [ ] 图解HTTP
 - [x] 图解TCP/IP 第五版
 - [ ] 你不知道的JS（上、中、下、三卷）
-</detail>
-<detail>
+</details>
+<details>
 <summary>非技术类：</summary>
 
 - [ ] 一只特立独行的猪（王小波）
@@ -27,16 +27,16 @@
 - [ ] 从零开始做运营
 - [ ] 兄弟
 - [ ] 许三观卖血记
-</detail>
+</details>
 
 ## 2019 年以前看过的（Past）
-<detail>
+<details>
 <summary>技术类：</summary>
 
 - [x] 深入浅出Node.js （朴灵）
-</detail>
+</details>
 
-<detail>
+<details>
 <summary>非技术类：</summary>
 
 - [x] 平凡的世界 （路遥）
@@ -46,4 +46,4 @@
 - [x] 挪威的森林
 - [x] 围城
 - [x] 不在梅边在柳边
-</detail>
+</details>
