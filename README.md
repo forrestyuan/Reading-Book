@@ -5,8 +5,8 @@
 <summary>技术类书籍：</summary>
 
 
-- [ ] ~~TCP/IP详解~~
-- [ ] [图解HTTP](https://github.com/forrestyuan/Reading-Book/tree/master/note/图解HTTP.md)
+- [ ] TCP/IP详解
+- [x] [图解HTTP](https://github.com/forrestyuan/Reading-Book/tree/master/note/图解HTTP.md)
 - [x] [图解TCP/IP 第五版](https://github.com/forrestyuan/Reading-Book/tree/master/note/图解TCP_IP第五版.md)
 - [ ] 你不知道的JS（上、中、下、三卷）
 </details>
