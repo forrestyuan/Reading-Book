@@ -245,3 +245,17 @@ HTTP报文大致可分为报文首部和报文主体两块。两者有空行划�
 
 通常HTTP直接和TCP通信。当使用SSL时，就变成了HTTP先和SSL通信，再由SSL和TCP通信了。  
 SSL是独立于HTTP的协议，除了HTTP协议外，诸如SMTP、Telnet等协议均可配合SSL协议使用。 
+
+>注意： 确切的HTTPS 笔记另外一本书里。[临时链接](http//:www.forrestyuan.cn)
+
+## 📚身份认证
+* BASIC 认证（基本认证）
+当请求的资源需要BASIC认证时，服务器回随状态码401 Authorization Required,返回带WWW-Authenticates首部字段的响应。该字段内包含认证的方式及Request-URI安全域字符串（realm）  
+用户输入ID和密码后经过BASE64编码后发送。服务器接收验证成功后会返回一条包含Request-URI资源的响应。  
+* DIGEST 认证（摘要认证）
+比BASIC多了编码后的nonce（随机数），服务端生成nonce发送给客户端，客户端后续需要发送给客户端。
+
+* SSL客户端认证
+
+* FormBase认证（基于表单认证）
+
