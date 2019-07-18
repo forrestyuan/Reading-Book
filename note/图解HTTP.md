@@ -246,7 +246,7 @@ HTTP报文大致可分为报文首部和报文主体两块。两者有空行划�
 通常HTTP直接和TCP通信。当使用SSL时，就变成了HTTP先和SSL通信，再由SSL和TCP通信了。  
 SSL是独立于HTTP的协议，除了HTTP协议外，诸如SMTP、Telnet等协议均可配合SSL协议使用。 
 
->注意： 确切的HTTPS 笔记另外一本书里。[临时链接](http//:www.forrestyuan.cn)
+> ~~注意： 确切的HTTPS 笔记另外一本书里。[临时链接](http//:www.forrestyuan.cn)~~
 
 ## 📚身份认证
 * BASIC 认证（基本认证）
@@ -259,3 +259,14 @@ SSL是独立于HTTP的协议，除了HTTP协议外，诸如SMTP、Telnet等协�
 
 * FormBase认证（基于表单认证）
 
+## 📚web安全
+
+* XSS 跨站脚本攻击
+* CSRF 跨站请求伪造
+* SQL 注入攻击
+* HTTP首部注入攻击 
+通过在响应首部字段内插入换行，添加任意响应首部或主题的一种攻击。属于被动攻击
+* DDoS攻击
+
+
+完结撒花❀
