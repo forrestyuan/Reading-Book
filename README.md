@@ -11,8 +11,10 @@
 
 - [x] [图解HTTP](https://github.com/forrestyuan/Reading-Book/tree/master/note/图解HTTP.md)
 - [x] [图解TCP/IP 第五版](https://github.com/forrestyuan/Reading-Book/tree/master/note/图解TCP_IP第五版.md)
-- [ ] [TCP/IP详解](https://github.com/forrestyuan/Reading-Book/tree/master/note/TCP_IP详解.md)
-- [ ] 你不知道的JS（上、中、下、三卷）
+- [ ] [TCP/IP详解卷一](https://github.com/forrestyuan/Reading-Book/tree/master/note/TCP_IP详解卷一.md)
+- [ ] 你不知道的JS（上）
+- [ ] 你不知道的JS（中）
+- [ ] 你不知道的JS（下）
 </details>
 <details>
 <summary>非技术书籍：</summary>
