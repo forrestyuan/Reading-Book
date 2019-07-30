@@ -11,10 +11,8 @@
 
 - [x] [图解HTTP](https://github.com/forrestyuan/Reading-Book/tree/master/note/图解HTTP.md)
 - [x] [图解TCP/IP 第五版](https://github.com/forrestyuan/Reading-Book/tree/master/note/图解TCP_IP第五版.md)
-- [ ] [TCP/IP详解卷一](https://github.com/forrestyuan/Reading-Book/tree/master/note/TCP_IP详解卷一.md)
-- [ ] 你不知道的JS（上）
-- [ ] 你不知道的JS（中）
-- [ ] 你不知道的JS（下）
+- [ ] ~~[TCP/IP详解卷一](https://github.com/forrestyuan/Reading-Book/tree/master/note/TCP_IP详解卷一.md)~~
+- [ ] 你不知道的JS
 </details>
 <details>
 <summary>非技术书籍：</summary>
@@ -40,6 +38,7 @@
 <summary>额外阅览（Non-Book）：</summary>
 
 - [x] [牛客网网络知识题记](https://github.com/forrestyuan/Reading-Book/tree/master/note/牛客网做题笔记.md)
+- [ ] Javascript笔记本
 </details>
 
 ## 2019 年以前看过的（Past）Years before 2019 Reading
