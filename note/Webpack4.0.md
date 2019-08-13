@@ -6,7 +6,8 @@
   # 安装webpack
   npm i -D webpack webpack-cli
 ```
-* 在webpack.config.js 中设置mode为“production”或“development",默认为mode的值是production，会压缩打包后的代码。 * webpack是node写出来的，node的写法。
+* 在webpack.config.js 中设置mode为“production”或“development",默认为mode的值是production，会压缩打包后的代码。 
+* webpack是node写出来的，node的写法。
 * 在package.json 设置启动打包命
 * npm run 命令 传递参数需要加”--“
 ```bash
