@@ -13,7 +13,7 @@
 - [x] [图解TCP/IP 第五版](https://github.com/forrestyuan/Reading-Book/tree/master/note/图解TCP_IP第五版.md)
 - [ ] ~~[TCP/IP详解卷一](https://github.com/forrestyuan/Reading-Book/tree/master/note/TCP_IP详解卷一.md)~~
 - [ ] 你不知道的JS
-- [ ] webapck4.0学习记录
+- [ ] [webapck4.0学习记录](https://github.com/forrestyuan/Reading-Book/tree/master/note/Webpack4.0.md)
 </details>
 <details>
 <summary>非技术书籍：</summary>
