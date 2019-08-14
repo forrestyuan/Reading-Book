@@ -212,14 +212,14 @@ module.exports={
 
 npm安装如下包：  
 
-babel-loader (-D)
-@babel/core  (-D)
-@babel/preset-env  (-D)
-babel-runtime-plugin  
-@babel/runtime   (--save)
-@babel/plugin-proposal-class-properties  (-D)
-@babel/plugin-transform-runtime (-D)
-@bable/polyfill (--save)
+babel-loader (-D)  
+@babel/core  (-D)  
+@babel/preset-env  (-D)  
+babel-runtime-plugin    
+@babel/runtime   (--save)  
+@babel/plugin-proposal-class-properties  (-D)  
+@babel/plugin-transform-runtime (-D)  
+@bable/polyfill (--save)  
 
 ```js
 module.exports={
@@ -309,9 +309,164 @@ file-loader
 html-withimg-loader  
 在HTML 中引入图片路径可解析。
 
+通过outputPath,可以将打包的文件分类到不同目录下。
 ***
 
 ## 📃 打包多页应用
 
+* 多入口，需要被打包的js文件
+entry的值为一个对象，键值对表示不同的入口。
+```js
+  entry:{
+    main:'main.js',
+    about:'about.js'
+  }
+```
+*  多出口，打包的js文件
+```js
+output:{
+  filename:'[name].js', //这里的name,webpack会自动映射到entry的键值对的key。
+  path:path.resolve(__dirname,'dist')
+}
+```
+* 将打包的多出口的js文件插入到不同的html文件,需要使用html-webpack-plugin这个插件。
+```js
+  plugins:[
+    new HtmlWebpackPlugin({
+      template:'./index.html',
+      filename:'main.html',
+      chunks:['main'] //引入main.js代码块
+    }),
+    new HtmlWebpackPlugin({
+      template:'./index2.html',
+      filename:'about.html',
+      chunks:['main','about'] //引入main和about
+    })
+  ]
+```
 
-* 
+## 📃 sourceMap的作用
+在webpack.config.js文件中，添加devtool配置。  
+1. 配置devtool的值为`source-map`   
+源码映射，会单独生成一个sourcemap文件，代码出错时，会标识当前报错的行和列。
+```js
+  devtool:'source-map', //增加映射文件，可以帮助调试源代码
+```
+2. 配置devtool的值为`eval-source-map`  
+   不会产生一个独立的sourcemap文件，但是可以映射行和列。
+```js
+  devtool:'eval-source-map'
+```
+
+3. 配置devtool的值为`cheap-module-source-map`  
+   不会产生列，但是是一个单独的映射文件
+
+4. 配置devtool的值为`cheap-module-eval-source-map`  
+   不会产生文件，集成再打包后的文件中，不会产生列
+```js
+  devtool:`cheap-module-eval-source-map`
+```
+
+## 📃 watch的作用
+
+实时监控打包代码，在webpack.config.js中配置watch选项。  
+```js
+watch:true,
+watchOptions:{
+  poll:1000, //每隔一秒查询
+  aggreteTimeout:500,//防抖，编辑代码停止后500ms内打包
+  ignored:/node_modules/,  //不监控哪个文件
+}
+```
+
+## 📃 webpack小插件应用
+
+1. cleanwebpackPlugin  
+   每次打包生成文件前，将旧的打包的文件删除。
+   ```js
+    const CleanWebpackPlugin = require('clean-webpack-plugin');
+    plugins:[
+      new CleanWebpackPlugin('./dist')
+    ]
+   ```
+2. copywebpackPlugin  
+   用于将项目中的一些文件或目录拷贝到打包的文件夹内。
+  ```js
+    const CopyWebpackPlugin = require("copy-webpack-plugin");
+    plugins:[
+      new CopyWebpackPlugin({
+        from:'doc',
+        to:'./'
+      })
+    ]
+   ```
+3. bannerPlugin (内置的)  
+   用于添加版权声明，使用时，需要引入webpack。
+   ```js
+   const webpack = require('webpack');
+   plugins:[
+     new webpack.BannerPlugin("make by fox,leany in 2019 Aug")
+   ]
+   ```
+
+## 📃 webpack 跨域问题
+1. 方法一，配置代理
+在webapck.config.js中配置devServer,在其中配置相关选项。
+```js
+  devServer:{
+    proxy:{
+      '/api':{
+        target:'http://localhost:3000', // 配置了一个代理
+        pathRewrite:{
+          '/api':''
+        }
+      }
+    }，
+
+  }
+```
+
+2. 方法二， 在服务端启动webpack。  
+   在服务端使用`webpack-dev-middleware`这个中间件，并引入webpack。
+   ```js
+    let webpack = require('webpack');
+    //中间件
+    let middleWare = require('webpack-dev-middleware');
+    //拿到配置文件
+    let config = require('./webpack.config.js');
+
+    let compiler = webpack(config);
+    app.use(middleWare(compiler));
+
+    app.get('/user', (req, res) => {
+      res.json({name:'fox'})
+    });
+
+    app.listen(3000)
+   ```
+
+3. 方法三，在devServer中配置express提供的方法
+   ```js
+   devServer:{
+     before(app){
+       app.get('/user', (req,res)=>{
+         res.json({name:'fox'})
+       })
+     }
+   }
+   ```
+
+## 📃 resolve 属性的配置
+示例代码不完整
+```js
+  resolve:{
+    modules:[path.resolve("node_modules")], // 表示在当前设置的路径下找第三方库，缩小查找范围。
+    alias:{ //设置别名
+      bootstrap:'bootstrap/dist/css/bootstrap.css',
+      @:path.resolve(__dirname,'src')
+    },
+    mainFields:['style','main'], //设置引入库的文件的查找顺序，依次匹配直到没匹配到
+    mainFiles:[], //入口文件的名字，可配置多个，依次查找，知道没找到。
+    extensions:['.js','.css','.json','.vue'], //查找文件拓展名，依次解析。
+  }
+```
