@@ -471,3 +471,32 @@ watchOptions:{
     extensions:['.js','.css','.json','.vue'], //查找文件拓展名，依次解析。
   }
 ```
+## 📃  区分开发环境
+
+我们可以将webpack.config.js文件分成三个文件，`webpack.prod.js` `webpack.dev.js` `webpack.base.js`, 使用webpack-merge这个插件。
+
+```js
+//在webpack.prod.js中添加
+let {smart} = require('webapck-merge');
+let base = require('webpack.base.js');
+module.exports = smart(base,{
+  mode:'production',
+  optimization:{
+    minimizer:[]
+  },
+  plugins:[]
+})
+```
+
+```js
+//在webpack.dev.js中添加
+let {smart} = require('webapck-merge');
+let base = require('webpack.base.js');
+module.exports = smart(base,{
+  mode:'development',
+  devtool:{},
+  devServer:{}
+})
+```
+
+## 📃 
