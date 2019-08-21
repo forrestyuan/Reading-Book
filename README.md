@@ -4,7 +4,7 @@
 > Reading make you wise, powerful, stronger.
 
 ![reading](https://raw.githubusercontent.com/forrestyuan/Reading-Book/master/assets/reading.jpg)
-## 2019 年度阅读（进行中....）Years 2019 Reading(ongoing)
+## 2019 年度阅读（下半年、进行中....）Years 2019 Reading(ongoing)
 <details>
 <summary>技术类书籍：</summary>
 
@@ -15,6 +15,7 @@
 - [ ] 你不知道的JS
 - [x] [webapck4.0学习记录](https://github.com/forrestyuan/Reading-Book/tree/master/note/Webpack4.0.md)
 - [x] [敏捷开发修炼之道](https://github.com/forrestyuan/Reading-Book/tree/master/note/敏捷开发修炼之道.md)
+- [ ] [深入浅出React和Redux](https://github.com/forrestyuan/Reading-Book/tree/master/note/深入浅出React和Redux.md)
 </details>
 <details>
 <summary>非技术书籍：</summary>
@@ -44,7 +45,7 @@
 - [ ] 2019 React教程
 </details>
 
-## 2019 年以前看过的（Past）Years before 2019 Reading
+## 2019 年以前看过的[记忆中]（Past）Years before 2019 Reading
 <details>
 <summary>技术类：</summary>
 
