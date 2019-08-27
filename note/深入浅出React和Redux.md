@@ -154,6 +154,121 @@ props是组件的对外接口，state是组件的内部状态。
     tagNum：PropTypes.number
   };
 ```
-propTypes虽然能够在开发阶段发现代码中的问题，但是放在产品环境中就不大合适了。在发布产品代码时用一种自动的方式将propTyps去掉，使用babel-react-optimize就具有这个功能。
+propTypes虽然能够在开发阶段发现代码中的问题，但是放在产品环境中就不大合适了。在发布产品代码时用一种自动的方式将propTyps去掉，使用babel-react-optimize就具有这个功能。  
 
-## 组件向外传递数据
+
+***
+
+# 4. redux
+![React Redux](https://raw.githubusercontent.com/forrestyuan/Reading-Book/master/assets/redux.jpg)
+
+安装：
+```bash
+npm install --save redux
+# 附加包：
+npm install --save react-redux
+npm install -D react-devtools
+```
+* **三大原则：**
+> 1. 单一数据源：整个应用的state被储存在一颗object tree中，并且这个object tree只存在于唯一一个stroe中。
+> 2. State是只读的：唯一改变state的方法就是触发action，action是一个用于描述已发生事件的对象。
+> 3. 使用纯函数来执行修改： 为了描述action如何改变state，需要编写reducers。
+
+* **要点:** 
+  应用中所有的state都已一个对象树的形式储存于一个单一的store中。唯一改变state的方法是触发action（一个描述发生什么的对象）。为了描述action如何改变state树，你需要编写reducer。    
+
+```js
+  import { createStore } from 'redux'
+ /**
+  * 这是一个 reducer，形式为 (state, action) => state 的纯函数。
+  * 描述了 action 如何把 state 转变成下一个 state。
+  *
+  * state 的形式取决于你，可以是基本类型、数组、对象、
+  * 甚至是 Immutable.js 生成的数据结构。惟一的要点是
+  * 当 state 变化时需要返回全新的对象，而不是修改传入的参数。
+  *
+  * 下面例子使用 `switch` 语句和字符串来做判断，但你可以写帮助类(helper)
+  * 根据不同的约定（如方法映射）来判断，只要适用你的项目即可。
+  */
+  function counter(state = 0, action) {
+    switch (action.type) {
+      case 'INCREMENT':
+        return state + 1
+      case 'DECREMENT':
+        return state - 1
+      default:
+        return state
+    }
+  }
+
+  // 创建 Redux store 来存放应用的状态。
+  // API 是 { subscribe, dispatch, getState }。
+  let store = createStore(counter)
+
+  // 可以手动订阅更新，也可以事件绑定到视图层。
+  store.subscribe(() => console.log(store.getState()))
+
+  // 改变内部 state 惟一方法是 dispatch 一个 action。
+  // action 可以被序列化，用日记记录和储存下来，后期还可以以回放的方式执行
+  store.dispatch({ type: 'INCREMENT' })
+  // 1
+  store.dispatch({ type: 'INCREMENT' })
+  // 2
+  store.dispatch({ type: 'DECREMENT' })
+  // 1
+```
+
+## 🖊 Action
+
+Action 是把数据从应用（译者注：这里之所以不叫 view 是因为这些数据有可能是服务器响应，用户输入或其它非 view 的数据 ）传到 store 的有效载荷。它是 store 数据的唯一来源。一般来说你会通过 store.dispatch() 将 action 传到 store。
+
+* 本质是JS普通对象
+* 约定action内使用一个字符串类型（通常用常量来表示）的type字段表示将要执行的动作。
+* 除了type字段外，action对象的结构完全由你自己决定。
+
+通常我们通过Action创建函数来返回一个action。易于移植和测试。在传统的Flux实现中，当调用action创建函数时，一般会触发一个dispactch。
+```js
+  function addTodoWithDispatch(text){
+    const action = {
+      type: ADD_TODO,
+      text
+    }
+    dispatch(action);
+  }
+```
+Redux中只需要把action创建函数的结果传给dispatch()方法即可发起一次dispatch过程。
+```js
+  dispatch(addTodo(text));
+  dispatch(completeTodo(index));
+```
+或者创建一个被绑定的action创建函数
+```js
+  const boundAddTodo = text => dispatch(addTodo(text));
+  //调用
+  boundAddTodo(text);
+```
+
+store里能够通过store.dispatch()调用dispatch()方法，但是多数情况下我们会使用`react-redux`提供的connect()帮助器来调用。通过`bindActionCreators()`可以自动把多个action创建函数绑定到dispatch()方法上。
+
+## 🖊Reducer
+Reducers指定了应用状态的变化如何响应actions并发送到store的。
+* reducer 是要一个纯函数，接受旧的state和action，返回新的state
+* 不要在reducer中：1，修改传入参数。2，执行有副作用的操作，如api请求或路由跳转 3，调用非纯函数，如Date.now()
+
+Redux 提供了combineReducers()工具类来整合所有reducer.
+
+## 🖊Store
+
+Store把Action和reducer联系到一起。
+* 维持应用的state
+* 提供getState()方法获取state
+* 提供dispatch(action)方法更新state
+* 通过subscribe(listener)注册监听器
+* 通过subscribe(listener)返回的函数注销监听器。
+
+```js
+  import  {createStore} from 'redux'
+  import todoApp from './reducers'
+  let store = createStore(todoApp)
+
+```
