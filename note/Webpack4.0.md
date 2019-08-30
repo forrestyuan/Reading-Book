@@ -385,9 +385,9 @@ watchOptions:{
 1. cleanwebpackPlugin  
    每次打包生成文件前，将旧的打包的文件删除。
    ```js
-    const CleanWebpackPlugin = require('clean-webpack-plugin');
+    const {CleanWebpackPlugin} = require('clean-webpack-plugin');
     plugins:[
-      new CleanWebpackPlugin('./dist')
+      new CleanWebpackPlugin()
     ]
    ```
 2. copywebpackPlugin  
