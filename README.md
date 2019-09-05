@@ -5,10 +5,9 @@
 
 ![reading](https://raw.githubusercontent.com/forrestyuan/Reading-Book/master/assets/reading.jpg)
 ## 2019 年度阅读（下半年、进行中....）Years 2019 Reading(ongoing)
-<details>
-<summary>技术类书籍：</summary>
 
-
+技术类书籍：
+- [ ] [Javascript DOM 编程艺术（第二版）](https://github.com/forrestyuan/Reading-Book/tree/master/note/javascriptDOM编程艺术.md)
 - [x] [图解HTTP](https://github.com/forrestyuan/Reading-Book/tree/master/note/图解HTTP.md)
 - [x] [图解TCP/IP 第五版](https://github.com/forrestyuan/Reading-Book/tree/master/note/图解TCP_IP第五版.md)
 - [ ] ~~[TCP/IP详解卷一](https://github.com/forrestyuan/Reading-Book/tree/master/note/TCP_IP详解卷一.md)~~
@@ -16,9 +15,8 @@
 - [x] [webapck4.0学习记录](https://github.com/forrestyuan/Reading-Book/tree/master/note/Webpack4.0.md)
 - [x] [敏捷开发修炼之道](https://github.com/forrestyuan/Reading-Book/tree/master/note/敏捷开发修炼之道.md)
 - [ ] [深入浅出React和Redux](https://github.com/forrestyuan/Reading-Book/tree/master/note/深入浅出React和Redux.md)
-</details>
-<details>
-<summary>非技术书籍：</summary>
+
+非技术书籍：
 
 - [x] [活着 （余华）](https://github.com/forrestyuan/Reading-Book/tree/master/note/活着.md)
 - [X] [第七天（余华）](https://github.com/forrestyuan/Reading-Book/tree/master/note/第七天.md)
@@ -35,25 +33,22 @@
 - [ ] 从零开始做运营
 - [ ] 兄弟
 - [ ] 许三观卖血记
-</details>
 
-<details>
-<summary>额外阅览（Non-Book）：</summary>
+额外阅览（Non-Book）：
 
 - [x] [牛客网网络知识题记](https://github.com/forrestyuan/Reading-Book/tree/master/note/牛客网做题笔记.md)
 - [ ] Javascript笔记本
 - [ ] 2019 React教程
-</details>
+
 
 ## 2019 年以前看过的[记忆中]（Past）Years before 2019 Reading
-<details>
-<summary>技术类：</summary>
+
+技术类：
 
 - [x] 深入浅出Node.js （朴灵）
-</details>
+- [x] 面向对象编程精要 
 
-<details>
-<summary>非技术类：</summary>
+非技术类：
 
 - [x] 平凡的世界 （路遥）
 - [x] 路遥传 （厚夫）
@@ -62,4 +57,4 @@
 - [x] 挪威的森林
 - [x] 围城
 - [x] 不在梅边在柳边
-</details>
+
