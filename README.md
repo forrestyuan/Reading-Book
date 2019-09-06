@@ -37,7 +37,7 @@
 额外阅览（Non-Book）：
 
 - [x] [牛客网网络知识题记](https://github.com/forrestyuan/Reading-Book/tree/master/note/牛客网做题笔记.md)
-- [ ] Javascript笔记本
+- [ ] [Javascript笔记本](https://github.com/forrestyuan/Reading-Book/blob/master/note/Javascript%20%E7%AC%94%E8%AE%B0%E6%9C%AC%EF%BC%88%E4%B8%80%EF%BC%89.md)
 - [ ] 2019 React教程
 
 
