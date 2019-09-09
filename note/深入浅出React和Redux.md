@@ -23,12 +23,6 @@ Web前端开发关于性能优化有一个原则：尽量减少DOM操作。Virtu
 
 # 2. 基础
 ## 一、起步前置条件
-- 基本熟悉HTML 和 CSS
-- Javascript和编程的基础认识
-- 对Dom的基本了解
-  - Dom的渲染，Dom的结构....
-- 熟悉ES6语法和功能
-- NodeJS和npm
 ### ① 安装
 - 可以使用script标签  
 ```html
@@ -104,15 +98,13 @@ var Greeting = createReactClass({
   ![React 生命周期](https://raw.githubusercontent.com/forrestyuan/Reading-Book/master/assets/Reactlifecycle.png)
 
 ### 5、事件
-在 React 中另一个不同点是你不能通过返回 false 的方式阻止默认行为。你必须显式的使用 preventDefault 。例如，传统的 HTML 中阻止链接默认打开一个新页面，你可以这样写：
+在 React 中另一个不同点是你不能通过返回 false 的方式阻止默认行为。你必须显式的使用 preventDefault 。React里的event是合成事件，不存在兼容性问题。
 
 
 
-## 二、高频
-- render()方法
-- JSX
-1、JSX会被Babel转译成React.createElement()函数调用
-- this.props
+## 二、JSX
+React 中使用jsx来编写组件。在jsx中，由于jsx更接近Javascript,所以react Dom使用小驼峰命名来定义属性的名称。例如：class变成className.而tabindex变成tabIndex。JSX会被Babel转译成React.createElement()函数调用
+
 
 ## 三、注意
 
@@ -121,7 +113,6 @@ var Greeting = createReactClass({
 用箭头函数解决
  
 - HTML 表标签属性（label的 for -> htmlFor, class属性 -> className）
-- JSX中的属性和方法是驼峰式命名（onclick -> onClick）
 - 自动关闭标签必须要以斜线结尾(`<img/>`)
 - 改变状态要用 this.setState(),可以传入对象或方法为参数,第二个参数为回调函数，this.setState为一个异步执行的函数，当多次执行this.setState,只会执行一次
 
@@ -271,4 +262,25 @@ Store把Action和reducer联系到一起。
   import todoApp from './reducers'
   let store = createStore(todoApp)
 
+```
+
+**传入Store**:  
+所有容器组件都可以访问Redux store, 所以可以手动监听它。一种方式是把它以props的形式传入到所有容器组件中。但这太麻烦了，因为必须要用store把展示组件包裹一层，仅仅是因为恰好在组件树中渲染了一个容器组件。建议使用<Provider>来让所有容器组件都可以访问store，而不必显示的传递它。只需要在渲染根组件时使用即可。
+
+```js
+  import React from 'react'
+  import {render} from 'react-dom'
+  import {Provider} from 'react-redux'
+  import {createStore} from 'redux'
+  import todoApp from './reducers'
+  import App from './components/App'
+
+  let store = createStore(todoApp);
+
+  render(
+    <Provider store={store}>
+      <App/>
+    </Provider>,
+    document.getElementById('root')
+  )
 ```

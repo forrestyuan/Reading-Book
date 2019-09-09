@@ -1,6 +1,8 @@
 # Javascript 笔记
 
-将笔记本里写的东西转为数字化的信息。这里的笔记有些会被丢弃，斟酌之后会记录下来。来自于红皮TengSheng NOTEBOOK 这本笔记本，算是第一本JS笔记本了。
+将笔记本里写的东西转为数字化的信息。这里的笔记有些会被丢弃，斟酌之后会记录下来。
+
+## 📘 笔记本一（红色的那本）
 
 ## 1. 事件流
 描述的是从页面中接受事件的顺序。   
@@ -9,7 +11,7 @@
 * 事件捕获流  
 不太具体的节点更早的接收的事件，向深层次最具体的节点传播事件。
 
-### 使用事件处理程序
+### 🖊 使用事件处理程序
 1. HTML事件处理程序
 2. DOM 0 级事件处理程序： 先把元素取出来让这个事件以这个对象属性的形式添加事件。（eg:`button.onclick = function(){....}`）;
 3. * DOM 2 级事件处理程序：（IE8不支持）  
@@ -18,7 +20,7 @@
   `attachEvent()`、`detachEvent()`。接受两个参数，事件名、处理事件的函数。  
   IE8以及更早版本的只支持事件冒泡。
 
-### 事件对象
+### 🖊 事件对象
 1. 在触发DOM上的事件时都会产生一个事件对象event，通常为了兼容IE，需要写成 `event = event || window.event`。
   ① 阻止事件冒泡：`event.stopPropagation()`;IE中为`cancelBubble()`;
   ② 阻止事件的默认行为： `event.preventDefault()`;IE中为`returnValue`属性为false即可阻止。
@@ -120,3 +122,81 @@ ECMAScript中没有类的概念，但是代码重用的风格并没有太多不�
 
 > 注意，在ES5中变量对象和活动对象被并入了词法环境模型。
 
+
+## 7. 函数参数
+参数对象（argument对象）是所有（非箭头）函数中可用的局部变量。参数对象就像通配符，可以向数组一样对其遍历来访问任意数量的参数。argument对象不是要给Array,它类似于Array,但除了length属性和索引外没有任何Array的属性。例如，它没有pop方法。  
+可以通过特殊手段，将其转换为一个真正的Array。
+```js
+  var args = Array.prototype.slice.call(arguments);
+  var args = [].slice.call(arguments) ;
+  //ES6
+  const args = Array.from(arguments);
+  const args = [...arguments];
+```
+
+> arguments.callee  
+> 指向当前执行的函数。  
+
+早期版本的 JavaScript不允许使用命名函数表达式，出于这样的原因, 你不能创建一个递归函数表达式。
+例如，下边这个语法就是行的通的：
+```js
+function factorial (n) {
+    return !(n > 1) ? 1 : factorial(n - 1) * n;
+}
+[1,2,3,4,5].map(factorial);
+
+//但是:
+[1,2,3,4,5].map(function (n) {
+    return !(n > 1) ? 1 : /* what goes here? */ (n - 1) * n;
+});
+
+//这个不行。为了解决这个问题， arguments.callee 添加进来了。然后你可以这么做
+[1,2,3,4,5].map(function (n) {
+    return !(n > 1) ? 1 : arguments.callee(n - 1) * n;
+});
+```
+> arguments.caller   
+> 指向调用当前函数的函数。(已经废弃)  
+> 
+> arguments.length  
+> 指向传递给当前函数的参数数量。  
+> 
+> arguments[@@iterator]  
+> 返回一个新的Array迭代器对象，该对象包含参数中每个索引的值。  
+>
+>注意:现在在严格模式下，arguments对象已与过往不同。arguments[@@iterator]不再与函数的实际形参之间共享，同时caller属性也被移除。  
+
+## 8.自执行函数 IIFE
+立即调用函数表达式（IIFE）是一个个模式，你可以在很多的库和框架中看到这一模式：
+```js
+//1.
+;(function(){
+  //....
+})();
+
+//2.
+;!function(){
+  //....
+}();
+
+//3.
+;-function(){
+  //...
+}();
+//4.
+;+function(){
+  //...
+}();
+//5.
+;~function(){
+  //....
+}();
+```
+
+IIFE提供了以下功能：
+* 防止命名冲突
+* 提供了类块级作用域
+* 防止变量污染
+* 促进代码模块化
+
+在前面加上分号是一种防御性的编程方式，防止其他的模块没有分号结尾。
