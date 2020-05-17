@@ -258,7 +258,45 @@ IIFE提供了以下功能：
 
 * Number类定义的toString()方法可以接收表示转换基数的可选参数，如果不指定，默认十进制。
 
-## 12. 作用域
+## 12. 执行上下文
+> js 代码的整个执行过程分为两个阶段，代码编译阶段和代码执行阶段。  
+> 
+> * 编译阶段由编译器完成，将代码翻译成可执行代码，这个阶段作用域规则会确定。  
+> 
+> * 执行阶段有引擎完成，主要任务是执行可执行代码（全局代码，函数代码，eval代码），执行上下文在这个阶段创建。
 
-JS的作用域可分为 全局作用域和函数作用域，以及with产生的拓展作用域。
-* 声明提前
+
+js引擎创建了 **执行上下文栈** （Execution context stack, ECS）来管理上下文。  
+* 举栗子：
+```js
+  function out(){
+    function inner(){}
+    inner();
+  }
+  out();
+  /*
+    这个函数的执行上下文栈会经历一下过程
+    ECS.push(globalContext);
+    ECS.push(outContext);
+    ECS.push(innerContext);
+    ECS.pop(outContext);
+    ECS.pop(innerContext);
+    ECS.pop(globalContext);
+  */
+```
+**强调： 上下文是在函数调用的时候才产生！！！！**  
+执行上下文的生命周期同样可以分为两个阶段。
+* 创建阶段
+  执行上下文分别创建变量对象，建立作用域链，以及确定this的指向。
+* 代码执行阶段
+  在这个阶段会生成三个重要的东西：
+  * 变量对象 VO
+  * 作用域链 Scope chain
+  * this
+
+1. 变量对象
+   
+2. 
+
+## 13. 作用域
+
