@@ -12,9 +12,9 @@
 - [x] [图解HTTP](https://github.com/forrestyuan/Reading-Book/tree/master/note/图解HTTP.md)
 - [x] [图解TCP/IP 第五版](https://github.com/forrestyuan/Reading-Book/tree/master/note/图解TCP_IP第五版.md)
 - [ ] ~~[TCP/IP详解卷一](https://github.com/forrestyuan/Reading-Book/tree/master/note/TCP_IP详解卷一.md)~~
-- [ ] 你不知道的JS 上
-- [ ] 你不知道的JS 中
-- [ ] 你不知道的JS 下
+- [x] 你不知道的JS 上
+- [x] git中文手册
+- [ ] 你不知道的JS下
 - [ ] Javascript 高级程序设计3.0（红皮书）
 - [x] [webapck4.0学习记录](https://github.com/forrestyuan/Reading-Book/tree/master/note/Webpack4.0.md)
 - [x] [敏捷开发修炼之道](https://github.com/forrestyuan/Reading-Book/tree/master/note/敏捷开发修炼之道.md)
