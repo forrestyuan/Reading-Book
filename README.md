@@ -7,6 +7,7 @@
 ## 2019 年度阅读（下半年、进行中....）Years 2019 Reading(ongoing)
 
 技术类书籍：
+- [ ] [leetcode program](https://github.com/forrestyuan/Reading-Book/tree/master/note/leetcode.md)
 - [ ] [Javascript DOM 编程艺术（第二版）](https://github.com/forrestyuan/Reading-Book/tree/master/note/javascriptDOM编程艺术.md)
 - [x] HTML5布局之路
 - [x] [图解HTTP](https://github.com/forrestyuan/Reading-Book/tree/master/note/图解HTTP.md)
