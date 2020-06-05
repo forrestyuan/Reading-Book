@@ -1,9 +1,9 @@
 # leetcode 刷题
 
 ### Remove Duplicates from Sorted Array II
-> Follow up for "Remove Duplicates": what if duplicates are allowed at most twice?
-> For example, Given sorted array A = [1,1,1,2,2,3,4,5,5],
-> Your function should return length = 8, A = [1,1,2,2,3,4,5,5]
+> Follow up for "Remove Duplicates": what if duplicates are allowed at most twice?  
+> For example, Given sorted array A = [1,1,1,2,2,3,4,5,5],  
+> Your function should return length = 8, A = [1,1,2,2,3,4,5,5]  
 
 ```javascript
 /*时间复杂度：O(n) 空间复杂度O(1)*/
