@@ -51,7 +51,7 @@ var target =  1;
 function searchRSA(arr, n , target){
     var first = 0, last  = n;
     while(first != last){
-        var mid = (first + last) / 2;
+        var mid = Math.floor((first + last) / 2);
         if(arr[mid] == target) {
             return mid;
         }
