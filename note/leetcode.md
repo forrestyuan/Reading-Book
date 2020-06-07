@@ -48,23 +48,30 @@ console.log(res)
 ```javascript
 var arr = [4,5,6,7,0,1,2];
 var target =  1;
+/**
+ ** 方法一：
+ ** 使用while 循环方式实现
+ **/
 function searchRSA(arr, n , target){
     var first = 0, last  = n;
     while(first != last){
+        //每次取下标中值
         var mid = Math.floor((first + last) / 2);
+        //循环退出条件，找到目标值。
         if(arr[mid] == target) {
             return mid;
         }
         //在有序区域
-        if(arr[first] < arr[mid]){
-            if(arr[first] <= target && arr[mid] > target){
+        if(arr[first] <= arr[mid]){
+            //判断是否在有序区域
+            if(arr[first] <= target && target < arr[mid]){
                 last = mid;
             }else{
                 first = mid + 1;
             }
-        }else{
-            // 在无序区域
-            if(arr[mid] < target && arr[last - 1] >= target){
+        }else{// 在无序区域
+            //仍旧判断是否在有序区域
+            if(arr[mid + 1] <= target && target <= arr[last - 1]){
                 first = mid + 1;
             }else{
                 last = mid;
@@ -72,5 +79,37 @@ function searchRSA(arr, n , target){
         }
     }
     return -1;
+}
+
+/**
+ ** 方法二：
+ ** 使用递归方式实现 
+ **/
+function retriveSearch(list, start, end, target){
+   // 递归推出条件
+    if(start == end){
+        return list[start] == target ? start - 1 : -1;
+    }
+    var mid = Math.floor((start + end) / 2);
+     console.log("run mid:" + mid)
+     //找到目标值退出递归
+    if(list[mid] == target){
+        return mid;
+    }
+    if(list[start] <= list[mid]){
+        if(list[start] <= target && target < list[mid]){
+            return retriveSearch(list, start, mid + 1, target);
+        }else{
+            return retriveSearch(list,mid + 1, end, target);
+        }
+    }else{
+        if(list[mid + 1] <= target && target <= list[end - 1]){
+            return retriveSearch(list, mid + 1, end, target);
+        }else{
+            return retriveSearch(list, start, mid + 1, target);
+        }
+    }
+    
+    
 }
 ```
