@@ -37,3 +37,38 @@ for(var i = 1; i < a.length; i++){
 a = null;
 console.log(res)
 ```
+
+### Search in Rotated Sorted Array
+> Suppose a sorted array is rotated at some pivot unknown to you beforehand  
+> (i.e. 0 1 2  4 5 6 7 might become 4 5 6  7 0 1 2).  
+> You are given a target value to search. if found in the array return its index,
+> otherwise return -1  
+> You may assume no duplicate exists in the array.  
+
+```javascript
+var arr = [4,5,6,7,0,1,2];
+var target =  1;
+function searchRSA(arr, n , target){
+    var first = 0, last  = n;
+    while(first != last){
+        var mid = (first + last) / 2;
+        if(arr[mid] == target) {
+            return mid;
+        }
+        if(arr[first] < arr[mid]){
+            if(arr[first] <= target && arr[mid] > target){
+                last = mid;
+            }else{
+                first = mid + 1;
+            }
+        }else{
+            if(arr[mid] < target && arr[last - 1] >= target){
+                first = mid + 1;
+            }else{
+                last = mid;
+            }
+        }
+    }
+    return -1;
+}
+```
