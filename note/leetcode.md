@@ -55,6 +55,7 @@ function searchRSA(arr, n , target){
         if(arr[mid] == target) {
             return mid;
         }
+        //在有序区域
         if(arr[first] < arr[mid]){
             if(arr[first] <= target && arr[mid] > target){
                 last = mid;
@@ -62,6 +63,7 @@ function searchRSA(arr, n , target){
                 first = mid + 1;
             }
         }else{
+            // 在无序区域
             if(arr[mid] < target && arr[last - 1] >= target){
                 first = mid + 1;
             }else{
