@@ -87,7 +87,7 @@ console.log(arrs); // output:[1,2,4,6,7,8,9,10]
    那么就把待插入元素放到这个位置。如下图为流程：
 */
 ```
-![插入排序流程](https://raw.githubusercontent.com/forrestyuan/Reading-Book/master/assets/insertSort.jpg)  
+![插入排序流程](https://raw.githubusercontent.com/forrestyuan/Reading-Book/master/assets/insertSort2.jpg)  
 
 ```js
 function insertion(arr){
