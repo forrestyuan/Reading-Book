@@ -112,6 +112,26 @@ var arrs = [4,3,2,10,12,1,5,6]
 insertion(arrs);
 console.log(arrs) //output:[1,2,3,4,5,6,10,12]
 ```
+```js
+//在变量的配置上，可以更加精简
+function insertion(arr){
+    //外循环遍历未排序的值
+    for(var i = 1; i < arr.length; i++){
+        //内循环遍历已排序的值
+        for(var j = i; j >= 0; j--){
+            if(arr[j-1] > arr[j]){
+                //交换符合条件的值，将有序序列中下标为j的值与无序序列中挑选的的被交换值交换
+                exchangeEle(arr, j, j-1);
+            }else{
+                break;
+            }
+        }
+    }
+}
+var arrs = [4,3,2,10,12,1,5,6]
+insertion(arrs);
+console.log(arrs) //output:[1,2,3,4,5,6,10,12]
+```
 
 **********************************
 
