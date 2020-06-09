@@ -4,8 +4,7 @@
 > Reading make you wise, powerful, stronger.
 
 ![reading](https://raw.githubusercontent.com/forrestyuan/Reading-Book/master/assets/reading.jpg)
-## 2019 年度阅读（下半年、进行中....）Years 2019 Reading(ongoing)
-
+## 阅读
 技术类书籍：
 - [ ] [leetcode program](https://github.com/forrestyuan/Reading-Book/tree/master/note/leetcode.md)
 - [ ] [Javascript DOM 编程艺术（第二版）](https://github.com/forrestyuan/Reading-Book/tree/master/note/javascriptDOM编程艺术.md)
@@ -20,6 +19,8 @@
 - [x] [webapck4.0学习记录](https://github.com/forrestyuan/Reading-Book/tree/master/note/Webpack4.0.md)
 - [x] [敏捷开发修炼之道](https://github.com/forrestyuan/Reading-Book/tree/master/note/敏捷开发修炼之道.md)
 - [ ] [深入浅出React和Redux](https://github.com/forrestyuan/Reading-Book/tree/master/note/深入浅出React和Redux.md)
+- [x] 深入浅出Node.js （朴灵）
+- [x] 面向对象编程精要 
 
 非技术书籍：
 
@@ -38,25 +39,6 @@
 - [ ] 从零开始做运营
 - [ ] 兄弟
 - [ ] 许三观卖血记
-
-额外阅览（Non-Book）：
-- [x] [Vue watch and computed 不同点](https://github.com/forrestyuan/Reading-Book/tree/master/note/Vue%20watch%20and%20computed%20不同点.md)
-- [x] [Vue.extend & Vue.component 区别](https://github.com/forrestyuan/Reading-Book/tree/master/note/VEVC.md)
-- [x] [牛客网网络知识题记](https://github.com/forrestyuan/Reading-Book/tree/master/note/牛客网做题笔记.md)
-- [ ] [Javascript笔记本](https://github.com/forrestyuan/Reading-Book/blob/master/note/Javascript%20%E7%AC%94%E8%AE%B0%E6%9C%AC%EF%BC%88%E4%B8%80%EF%BC%89.md)
-- [ ] [JavaScript笔记本二](https://github.com/forrestyuan/Reading-Book/tree/master/note/javascript%20笔记本二.md)
-
-
-
-## 2019 年以前看过的[记忆中]（Past）Years before 2019 Reading
-
-技术类：
-
-- [x] 深入浅出Node.js （朴灵）
-- [x] 面向对象编程精要 
-
-非技术类：
-
 - [x] 平凡的世界 （路遥）
 - [x] 路遥传 （厚夫）
 - [x] 人生 （路遥）
@@ -64,4 +46,12 @@
 - [x] 挪威的森林
 - [x] 围城
 - [x] 不在梅边在柳边
+
+
+额外阅览（Non-Book）：
+- [x] [Vue watch and computed 不同点](https://github.com/forrestyuan/Reading-Book/tree/master/note/Vue%20watch%20and%20computed%20不同点.md)
+- [x] [Vue.extend & Vue.component 区别](https://github.com/forrestyuan/Reading-Book/tree/master/note/VEVC.md)
+- [x] [牛客网网络知识题记](https://github.com/forrestyuan/Reading-Book/tree/master/note/牛客网做题笔记.md)
+- [ ] [Javascript笔记本](https://github.com/forrestyuan/Reading-Book/blob/master/note/Javascript%20%E7%AC%94%E8%AE%B0%E6%9C%AC%EF%BC%88%E4%B8%80%EF%BC%89.md)
+- [ ] [JavaScript笔记本二](https://github.com/forrestyuan/Reading-Book/tree/master/note/javascript%20笔记本二.md)
 
