@@ -1,5 +1,25 @@
 # Javascript 笔记
+<!-- TOC -->
 
+- [Javascript 笔记](#javascript-笔记)
+  - [📘 笔记本一（红色的那本）](#📘-笔记本一红色的那本)
+  - [1. 事件流](#1-事件流)
+    - [🖊 使用事件处理程序](#🖊-使用事件处理程序)
+    - [🖊 事件对象](#🖊-事件对象)
+  - [2. AJAX](#2-ajax)
+  - [3. JS类型转换](#3-js类型转换)
+  - [4. 属性访问表达式](#4-属性访问表达式)
+  - [5. 原型链](#5-原型链)
+  - [6. 执行上下文堆栈](#6-执行上下文堆栈)
+  - [7. 函数参数](#7-函数参数)
+  - [8.自执行函数 IIFE](#8自执行函数-iife)
+  - [9. 闭包](#9-闭包)
+  - [10. with关键字](#10-with关键字)
+  - [11. JS类型转换](#11-js类型转换)
+  - [12. 执行上下文](#12-执行上下文)
+  - [13. 作用域](#13-作用域)
+
+<!-- /TOC -->
 将笔记本里写的东西转为数字化的信息。这里的笔记有些会被丢弃，斟酌之后会记录下来。
 
 ## 📘 笔记本一（红色的那本）
@@ -102,7 +122,50 @@ ECMAScript中没有类的概念，但是代码重用的风格并没有太多不�
 ```js
  var b = Object.create(a, {y:{value:20}});
 ```
+**修改原型链方式（构造函数继承）实现继承**
+```js
+function Rectangle(length, width) {
+　　this.length= length;
+　　this.width= width;
+}
+Rectangle.prototype.getArea= function() {
+　　return this.length* this.width;
+};
+Rectangle.prototype.toString= function() {
+　　return "[Rectangle " + this.length+ "x" + this.width+ "]";
+};
+// inherits from Rectangle
+function Square(size) {
+　　this.length= size;
+　　this.width= size;
+}
+Square.prototype= new Rectangle();
+Square.prototype.constructor= Square;
+Square.prototype.toString= function() {
+　　return "[Square " + this.length+ "x" + this.width+ "]";
+};
+var rect= new Rectangle(5, 10);
+var square = new Square(6);
+console.log(rect.getArea()); 　　　　　　　　　 // 50
+console.log(square.getArea()); 　　　　　　　　 // 36
+console.log(rect.toString()); 　　　　　　　　　// "[Rectangle 5x10]"
+console.log(square.toString()); 　　　　　　　　// "[Square 6x6]"
+console.log(rect instanceof Rectangle); 　　　// true
+console.log(rect instanceof Object); 　　　　　// true
+console.log(square instanceof Square); 　　　　// true
+console.log(square instanceof Rectangle); 　　// true
+console.log(square instanceof Object); 　　　　// true
+```
+这段代码里有两个构造函数：Rectangle和Square。Square构造函数的prototype属性被改写为Rectangle的一个对象实例。此时不需要给Rectangle的调用提供参数，因为它们不需要被使用，而且如果提供了，
+那么所有的Square的对象实例都会共享同样的维度。
+用这种方式改变原型对象链时，你需要确保构造函数不会在参数缺失时抛出错误（很多构造函数包含的初始化逻辑会需要参数）且构造函数不会改变任何全局状态，比如追踪有多少对象实例被创建等。Square.prototype被改写后，其constructor属性会被重置为Square。然后，rect作为Rectangle的对象实例被创建，而square则被作为Square的实例创建。两个对象都有getArea()方法，因为那继承自Rectangle.prototype。instanceof操作符认为变量square同时是Square、Rectangle和Object的对象实例，因为instanceof使用原型对象链检查对象类型。
+<p style="color:deeppink">
+<b>Square.prototype</b> 并不真的需要被改写为一个Rectangle对象，毕竟Rectangle构造函数并没有真的为Square做什么必要的事情。事实上，唯一相关的部分是Square.prototype需要指向Rectangle.prototype，使得继承得以实现。
+</p>
 
+![this is prototype link img](https://raw.githubusercontent.com/forrestyuan/Reading-Book/master/assets/prototype.JPG)  
+
+**借用构造函数实现继承**
 ## 6. 执行上下文堆栈
 
 这里有三种ECMAScript代码，全局代码、函数代码、eval代码。每一个代码是在其执行上下文中被求值的。只有一个全局上下文。
@@ -203,37 +266,6 @@ IIFE提供了以下功能：
 
 ## 9. 闭包
 
-> 定义： 
-> 闭包就是将所有自由变量和函数绑定在一个封闭的表达式中，这个表达式可以保留在自由变量和函数创建之外的词法作用域。
-
-① 理解this关键字（词法作用域）：  
-  JS中，this关键字应用在词法作用域中时，因为this关键字总是指向正执行的作用域所有者。而函数在调用时会产生一个 **新的作用域** ，所以this就指向另一个作用域。  
-
-```js
- //示例代码：
- //通常将this赋给局部变量的自由变量来避开作用域带来的困扰。
-  var name = 'gg';
-  var obj = {
-    name: 'fox',
-    go: function(){
-      var that = this;
-      function comm(){
-        console.log(that.name)
-      }
-      comm();
-    }
-  }
-```
-**自由变量：**  
-> 如我在全局中定义了一个变量a，然后我在函数中使用了这个a，这个a就可以称之为自由变量，可以这样理解，凡是跨了自己的作用域的变量都叫自由变量。
-> ```js
->   var a = "追梦子";
->    function b(){
->       console.log(a);
->   }
->   b();
->```
-> 上面的这段代码中的变量a就是一个自由变量，因为在函数b执行到console.log(a)的时候，发现在函数中找不到变量a，于是就往上一层中找，最后找到了全局变量a。
 
 ## 10. with关键字
 > 关键字with 拓展一个语句的作用域链。以对象做为参数，然后是一对大括号，其中包含代码块。
