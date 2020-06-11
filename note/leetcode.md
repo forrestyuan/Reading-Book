@@ -1,3 +1,16 @@
+<!-- TOC -->
+
+- [leetcode 刷题](#leetcode-刷题)
+  - [sort function list:](#sort-function-list)
+    - [Tool: capsule utils for  function](#tool-capsule-utils-for--function)
+    - [BubbleSort Function](#bubblesort-function)
+    - [SelectionSort Function](#selectionsort-function)
+    - [InsertSort Function](#insertsort-function)
+  - [leetcode Questions list](#leetcode-questions-list)
+    - [Remove Duplicates from Sorted Array II](#remove-duplicates-from-sorted-array-ii)
+    - [Search in Rotated Sorted Array](#search-in-rotated-sorted-array)
+
+<!-- /TOC -->
 # leetcode 刷题
 
  描述      | 增长的数量级|  说明        |  举例         
@@ -11,7 +24,8 @@
  指数级别   | 2^N        |   穷举查找    |  检查所有子集   
 > O(1) < O(logN) < O(N) < O(NlogN) < O(n^2) < O(n^3) < O(2^N)
 
-### sort function list:
+
+## sort function list:
 > commonly there have lost of sorted function to match different situation;  
 > As an eligible programer developer, to grasp the sorted algorithm is needed;  
 > Below was the code of different sorted function write in javascript;  
@@ -21,7 +35,7 @@
 > 对于不稳定的排序算法，只要举出一个实例，即可说明它的不稳定性；而对于稳定的排序算法，必须对算法进行分析从而得到稳定的特性。需要注意的是，排序算法是否为稳定的是由具体算法决定的，不稳定的算法在某种条件下可以变为稳定的算法，而稳定的算法在某种条件下也可以变为不稳定的算法。
 
 例如，对于冒泡排序算法，原本是稳定的排序算法，如果将记录交换的条件改成r[j]>=r[j+1]，则两个相等的记录就会交换位置，从而变成不稳定的算法。
-#### :capsule util function
+### Tool: capsule utils for  function
 ```js
 /**
 ** util function: exchange two value in array;
@@ -32,7 +46,7 @@ function exchangeELe(arr, idx1, idx2){
     arr[idx1] = arr[idx1] ^ arr[idx2];
 }
 ```
-#### 1. BubbleSort Function
+### BubbleSort Function
 ```js
 //两两交换
 /*
@@ -51,7 +65,7 @@ var arrs = [6,5,4,3,2,1];
 bubleSort(arrs);
 console.log(arrs) //output:[1,2,3,4,5,6]
 ```
-#### 2. SelectionSort Function 
+### SelectionSort Function 
 ```js
 // 每次找最小的值交换
 /*
@@ -76,7 +90,7 @@ selectSort(arrs);
 console.log(arrs); // output:[1,2,4,6,7,8,9,10]
 ```
 
-#### InsertSort Function
+### InsertSort Function
 插入排序的工作方式非常像人们排序一手扑克牌一样。开始时，我们的左手为空并且座子上的牌面朝下。然后，我们每次从桌子上拿走一张扑克牌并将它们插入左手中正确的位置。为了找到一张牌的正确位置，我们从右到左将它与已在手中的每张牌进行比较，如下图：  
 ![手握扑克牌](https://raw.githubusercontent.com/forrestyuan/Reading-Book/master/assets/insertSort.jpg)  
 ```js
@@ -132,7 +146,7 @@ var arrs = [4,3,2,10,12,1,5,6]
 insertion(arrs);
 console.log(arrs) //output:[1,2,3,4,5,6,10,12]
 ```
-
+## leetcode Questions list
 **********************************
 
 <p style="text-align:center;font-weight:700;font-size:20px;color:red;"> I am the split line 👌</p>  

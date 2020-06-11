@@ -1,3 +1,23 @@
+<!-- TOC -->
+
+- [✈深入浅出React和Redux 学习](#✈深入浅出react和redux-学习)
+- [1. 特点](#1-特点)
+- [2. 基础](#2-基础)
+  - [一、起步前置条件](#一起步前置条件)
+    - [① 安装](#①-安装)
+    - [②组件声明](#②组件声明)
+    - [3、state,props](#3stateprops)
+    - [4、生命周期](#4生命周期)
+    - [5、事件](#5事件)
+  - [二、JSX](#二jsx)
+  - [三、注意](#三注意)
+- [3. 设计高质量的React 组件](#3-设计高质量的react-组件)
+- [4. redux](#4-redux)
+  - [🖊 Action](#🖊-action)
+  - [🖊Reducer](#🖊reducer)
+  - [🖊Store](#🖊store)
+
+<!-- /TOC -->
 # ✈深入浅出React和Redux 学习
 > 我热爱React，也热爱Vue，React是灵魂，Vue是精神。
 > 
