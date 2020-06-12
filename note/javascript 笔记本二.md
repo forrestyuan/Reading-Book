@@ -1,21 +1,23 @@
-# 1. javascript 笔记二
+# javascript 笔记二
 <!-- TOC -->
 
-- [1. javascript 笔记二](#1-javascript-笔记二)
-  - [1.1. 事件总线EventBus](#11-事件总线eventbus)
-  - [1.2. ES6 相关小记](#12-es6-相关小记)
-    - [1.2.1. 正则的拓展](#121-正则的拓展)
-    - [1.2.2. 数值扩展](#122-数值扩展)
-    - [1.2.3. 函数的拓展](#123-函数的拓展)
-    - [1.2.4. 数组的拓展](#124-数组的拓展)
-    - [1.2.5. 对象拓展](#125-对象拓展)
-    - [1.2.6. Symbol](#126-symbol)
-    - [1.2.7. Set和Map数据结构](#127-set和map数据结构)
-    - [1.2.8. Proxy](#128-proxy)
+- [javascript 笔记二](#javascript-笔记二)
+  - [事件总线EventBus](#事件总线eventbus)
+  - [ES6 相关小记](#es6-相关小记)
+    - [正则的拓展](#正则的拓展)
+    - [数值扩展](#数值扩展)
+    - [函数的拓展](#函数的拓展)
+    - [数组的拓展](#数组的拓展)
+    - [对象拓展](#对象拓展)
+    - [Symbol](#symbol)
+    - [Set和Map数据结构](#set和map数据结构)
+    - [Proxy](#proxy)
+    - [Reflect](#reflect)
+    - [Promise 对象](#promise-对象)
 
 <!-- /TOC -->
 
-## 1.1. 事件总线EventBus
+## 事件总线EventBus
 > EventBus 需要使用到Vue的三个全局API  
 > 1. vm.$on( event, callback )  
 > 监听当前实例上的自定义事件。事件可以由vm.\$emit触发。回调函数会接收所有传入事件触发函数的额外参数。  
@@ -45,10 +47,10 @@
 >  B = mounted  
 
 
-## 1.2. ES6 相关小记
+## ES6 相关小记
 **特别注意：以下纪录并不完整，只是摘录**
 
-### 1.2.1. 正则的拓展
+### 正则的拓展
 ES2018 引入了具名组匹配（Named Capture Groups），允许为每一个组匹配指定一个名字，既便于阅读代码，又便于引用。
 ```js
 const RE_DATE = /(?<year>\d{4})-(?<month>\d{2})-(?<day>\d{2})/;
@@ -99,7 +101,7 @@ RE_TWICE.test('abc!abc!abc') // true
 RE_TWICE.test('abc!abc!ab') // false
 ```
 
-### 1.2.2. 数值扩展  
+### 数值扩展  
 **Number.parseInt(), Number.parseFloat()**   
 ES6 将全局方法parseInt()和parseFloat()，移植到Number对象上面，行为完全保持不变。
 ```js
@@ -192,7 +194,7 @@ b **= 3;
 // 等同于 b = b * b * b;
 ```
 
-### 1.2.3. 函数的拓展  
+### 函数的拓展  
 **作用域**  
 一旦设置了参数的默认值，函数进行声明初始化时，参数会形成一个单独的作用域（context）。等到初始化结束，这个作用域就会消失。这种语法行为，在不设置参数默认值时，是不会出现的。
 ```js
@@ -279,7 +281,7 @@ button.addEventListener('click', () => {
 另外，如果函数体很复杂，有许多行，或者函数内部有大量的读写操作，不单纯是为了计算值，这时也不应该使用箭头函数，而是要使用普通函数，这样可以提高代码可读性。
 
 
-### 1.2.4. 数组的拓展
+### 数组的拓展
 **替代数组的apply方法**  
 由于扩展运算符可以展开数组，所以不再需要使用 apply 方法将数组转为函数的参数。
 ```js
@@ -386,7 +388,7 @@ fill方法还可以接受第二个和第三个参数，用于指定填充的起�
 ```js
 [1, 2,3].fill(7,1,2);//[1,7,3]
 ```
-### 1.2.5. 对象拓展
+### 对象拓展
 **Object.assign()**  
 `Object.assign`方法用于将源对象（source）的所有可枚举属性复制到目标对象（target）。
 ```js
@@ -440,7 +442,7 @@ const firstName = msg?.body?.user?.firstName || 'default';
 * `obj?.(...args)`:函数或对象方法调用  
 * `new C?.(...args)`:构造函数调用  
 
-### 1.2.6. Symbol
+### Symbol
 
 ES5 的对象属性名都是字符串，这容易造成属性名的冲突。  
 我们使用一个他人提供的对象，但又想为这个对象添加新的方法（mixin模式），新方法的名字就有可能与现有方法产生冲突。  
@@ -486,7 +488,7 @@ Symbol.for 为 Symbol 值登记的名字是全局环境的，可以在不同的 
 
 Symbol.keyFor方法返回一个已登记的Symbol类型值的key。
 
-### 1.2.7. Set和Map数据结构  
+### Set和Map数据结构  
 **Set**  
 Set结构的实例有以下属性。
 
@@ -594,20 +596,221 @@ WeakMap与Map在API上的区别主要有两个。
 * 一是没有遍历操作（即没有key（）、values（）和entries（）方法），也没有size属性。
 * 二是无法清空，即不支持clear方法。因此，WeakMap只有4个方法可用：get（）、set（）、has（）、delete（）。
 
-### 1.2.8. Proxy
+### Proxy
+1. **简述**
+  Proxy可以理解成在目标对象前架设一个“拦截”层，外界对该对象的访问都必须先通过这层拦截，因此提供了一个种机制可以对外界的访问进行过滤和改写。Proxy这个词的原意是代理。
+    ```js
+    let obj = new Proxy({},{
+      get(target, key, receiver){
+        console.log(`getting${key}`);
+        return Reflect.get(target,key,receiver)
+      },
+      set(target,key,value,receiver){
+        console.log(`setting ${key}`);
+        return Reflect.set(target, key, value, receiver);
+      }
+    })
+    ```
+    上面的代码对一个空对象进行了一层拦截，重定义了属性的get和set设置行为。这里暂时先不解释具体的语法，只看运行结果。  
+    上面的代码说明：**Proxy 实际上重载了点运算符** ，即用自己的定义覆盖了语言的定义。  
+    ES6原生提供Proxy构造函数，用于生成Proxy实例。
+    ```js
+    var proxy = new Proxy(target, handler);
+    ```
+    target 参数表示要拦截的目标对象。  
+    handler 参数也是一个对象，用来定制拦截行为。  
+    **注意！**  
+    要使Proxy起作用，必须针对Proxy实例（上例中是proxy对象）进行操作，而不是针对目标对象进行操作。  
+    如果handler没有设置任何拦截，那就等同于直接通向原对象。
 
-Proxy可以理解成在目标对象前架设一个“拦截”层，外界对该对象的访问都必须先通过这层拦截，因此提供了一个种机制可以对外界的访问进行过滤和改写。Proxy这个词的原意是代理。
+2. **Proxy支持的拦截操作**  
+  对于可以设置但没有设置拦截的操作，则直接落在目标对象上，按照原先的方式产生结果。  
+    ****
+    * 拦截对象属性的读取，比如 proxy.foo 和 proxy[′foo′]。最后一个参数 receiver是一个可选对象，参见下面Reflect.get的部分。
+    `get(target,propKey,receiver)`
+    
+    ****
+    * 拦截对象属性的设置，比如proxy.foo=v或proxy[′foo′]=v，返回一个布尔值。
+    `set(target,propKey,value,receiver)`  
+    ****
+    * 拦截propKey in proxy的操作，返回一个布尔值。
+    `has(target,propKey)`
+    ****
+    * 拦截delete proxy[propKey]的操作，返回一个布尔值。
+    `deleteProperty(target,propKey)`
+    ****
+    * 拦截Object.getOwnPropertyNames（proxy）、Object.getOwnPropertySymbols （proxy）、Object.keys（proxy），返回一个数组。该方法返回目标对象所有自身属性的属性名，而Object.keys（）的返回结果仅包括目标对象自身的可遍历属性。
+    `ownKeys(target)`
+    ****
+    * 拦截Object.getOwnPropertyDescriptor（proxy，propKey），返回属性的描述对象。
+    `getOwnPropertyDescriptor(target,propKey)`
+    ****
+    * 拦截Object.defineProperty（proxy，propKey，propDesc）、Object.define Properties（proxy，propDescs），返回一个布尔值。
+    `defineProperty(target,propKey,propDesc)`
+    ****
+    * 拦截Object.preventExtensions（proxy），返回一个布尔值。
+    `preventExtensions(target)`
+    ****
+    * 拦截Object.getPrototypeOf（proxy），返回一个对象。
+    `getPrototypeOf(target)`
+    ****
+    * 拦截Object.isExtensible（proxy），返回一个布尔值。
+    `isExtensible(target)`
+    ****
+    * 拦截Object.setPrototypeOf（proxy，proto），返回一个布尔值。如果目标对象是函数，那么还有两种额外操作可以拦截。
+    `setPrototypeOf(target,proto)`
+    ****
+    * 拦截 Proxy 实例，并将其作为函数调用的操作，比如 proxy（...args）、proxy.call （object，...args）、proxy.apply（...）。
+    `apply(target,object,args)`
+    ****
+    * 拦截Proxy实例作为构造函数调用的操作，比如new proxy（...args）。
+    `construct(target,args)`
+    ****
 
-```js
-let obj = new Proxy({},{
-  get(target, key, receiver){
-    console.log(`getting${key}`);
-    return Reflect.get(target,key,receiver)
-  },
-  set(target,key,value,receiver){
-    console.log(`setting ${key}`);
-    return Reflect.set(target, key, value, receiver);
+### Reflect 
+**概述**
+Reflect 对象与Proxy对象一样，也是ES6为了操作对象而提供的新的API。Reflect对象的设计目的有如下几个：
+1. 将Object对象的一些明显属于语言内部方法放到Reflect对象上。现阶段，某些方法同时在Object和Reflect对象上部署，未来的新方法将只在Reflect上部署。  
+2. 修改某些Object方法的返回结果，让其变得合理。比如`Object.defineProperty(obj, name, desc)`在无法定义属性是会抛出一个错误，而`Reflect.defineProperty(obj, name, desc)`则会返回false。
+    ```javascript
+      /*旧的写法：*/
+      try{
+        Object.defineProperty(target, property, attribute);
+      }catch(er){
+        console.log(er);
+      }
+      /*新的写法*/
+      if(Reflect.defineProperty(target, property, attributes)){
+        /*success*/
+      }else{
+        // failed
+      }
+    ```
+3. 让Object操作都变成函数行为。某些Object操作是命令式，比如`name in obj`,`delete obj[name]`，而Reflect.has(obj,name) 和 Reflect.deleteProperty(obj, name)让他们变成了函数下行为。
+
+4. Reflect对象的方法与Proxy对象的方法一一对应，只要是Proxy对象的方法，就能在Reflect对象上找到对应的方法。这既是Proxy对象可以方便调用对应的Relfect对象方法完成默认行为，作为修改行为的基础。
+```js 
+Proxy(target,{
+  set:function(target, name, value, receiver){
+    var success = Reflect.set(target, name, value, receiver);
+    if(success){
+      log('property'+name+'on'+target+'set to'+value);
+    }
+    return success;
   }
-})
+});
 ```
-上面的代码对一个空对象进行了一层拦截，重定义了属性的get 和 set 设置行为。这里暂时先不解释具体的语法，只看运行结果。
+上面的代码中，Proxy方法拦截target对象属性赋值行为。它采用Reflect.set方法将值赋给对象的属性，确保完成原有的行为，然后在部署额外的功能。
+
+> 有了Reflect对象以后，很多操作都会更易读。
+```js
+//旧写法：
+Function.prototype.apply.call(Math.floor, undefined, [1.75]) //1
+// 新写法
+Reflect.apply(Math.floor, undefined,[1.75]) //1
+```
+
+**Reflect对象一共有13个静态方法，如下所示。**
+|静态方法|
+|-------|
+|Reflect.apply(target,thisArg,args)             |
+|Reflect.construct(target,args)                 |
+|Reflect.get(target,name,receiver)              |
+|Reflect.set(target,name,value,receiver)        |
+|Reflect.defineProperty(target,name,desc)       |
+|Reflect.deleteProperty(target,name)            |
+|Reflect.has(target,name)                       |
+|Reflect.ownKeys(target)                        |
+|Reflect.isExtensible(target)                   |
+|Reflect.preventExtensions(target)              |
+|Reflect.getOwnPropertyDescriptor(target,name)  |   
+|Reflect.getPrototypeOf(target)                 |
+|Reflect.setPrototypeOf(target,prototype)       |
+上面这些方法的作用大部分与 Object 对象的同名方法的作用是相同的，而且与 Proxy对象的方法是一一对应的。
+
+### Promise 对象
+Promise是异步编程的一种解决方案.
+Promise对象有以下两个特点。
+
+1. 对象的状态不受外界影响。Promise对象代表一个异步操作，有3种状态：Pending（进行中）、Fulfilled（已成功）和Rejected（已失败）。只有异步操作的结果可以决定当前是哪一种状态，任何其他操作都无法改变这个状态。这也是 Promise 这个名字的由来，它在英语中意思就是 承诺，表示其他手段无法改变。
+
+2. 一旦状态改变就不会再变，任何时候都可以得到这个结果。Promise对象的状态改变只有两种可能：从Pending变为Fulfilled和从Pending变为Rejected。只要这两种情况发生，状态就凝固了，不会再变，而是一直保持这个结果，这时就称为Resolved（已定型）。就算改变已经发生，再对Promise对象添加回调函数，也会立即得到这个结果。这与事件（Event）完全不同。事件的特点是，如果错过了它，再去监听是得不到结果的。
+
+Promise构造函数接受一个函数作为参数，该函数的两个参数分别是resolve和reject。它们是两个函数，由JavaScript引擎提供，不用自己部署。
+
+Promise对象的错误具有“冒泡”性质，会一直向后传递，直到被捕获为止。也就是说，错误总是会被下一个catch语句捕获。  
+一般说来，不要在then方法中定义Rejected状态的回调函数（即then的第二个参数），而应总是使用catch方法。  
+```js
+  //糟糕的写法
+  Promise.then(data=>{
+    //success
+  },err=>{
+    //error
+  });
+  
+  //优良的写法
+  promise.then(data=>{
+    //success
+  }).catch(err=>{
+    //error
+  })
+```
+第二种写法要好于第一种写法，理由是第二种写法可以捕获前面 then 方法执行中的错误，也更接近同步的写法（try/catch）。因此，建议使用catch方法，而不使用then方法的第二个参数。
+
+**Promise.all()**  
+如果作为参数的Promise实例自身定义了catch方法，那么它被rejected时并不会触发Promise.all（）的catch方法。
+**Promise.race()**  
+**Promise.resolve()**  
+将现有对象转为Promise对象，Promise.resolve方法就起到这个作用。
+```js
+  var jsPromise = Promise.resolve($.ajax('/whatever.jsjon'));
+```
+`Promise.resolve('foo')`等价于下面的写法：  
+```js
+  new Promise(resolve => resolve('foo'))
+```
+Promise.resolve方法的参数分为以下4种情况。
+- 参数是一个Promise实例  
+如果参数是Promise实例，那么Promise.resolve将不做任何修改，原封不动地返回这个实例。
+
+- 参数是一个 thenable对象   
+thenable对象指的是具有then方法的对象，比如下面这个对象。
+```js
+let thenable = {
+  then: function(resolve, reject){
+    resolve(42);
+  }
+}
+```
+- 参数不是具有then方法对象或者根本不是对象。
+如果参数是一个原始值，或者是一个不具有then方法的对象，那么Promise.resolve方法返回一个新的Promise对象，状态为Resolved。
+```js
+var p = Promise.resolve('Hello');
+p.then(function(s){
+  console.log(s);
+})
+// Hello
+```
+上面的代码生成一个新的Promise对象的实例p。由于字符串Hello不属于异步操作（判断方法是字符串对象不具有then方法），返回Promise实例的状态从生成起就是Resolved，所以回调函数会立即执行。Promise.resolve方法的参数会同时传给回调函数。
+
+- 不带任何参数
+Promise.resolve 方法允许在调用时不带有参数，而直接返回一个 Resolved 状态的Promise对象。  
+所以，如果希望得到一个Promise对象，比较方便的方法就是直接调用Promise.resolve方法。
+```js
+var p = Promise.resolve();
+p.then(function(){
+  //....
+});
+```
+上面代码中的变量p就是一个Promise对象。
+需要注意的是，立即resolve的Promise对象是在本轮“事件循环”（event loop）结束时，而不是在下一轮“事件循环”开始时
+
+
+**Promise.reject()**  
+返回一个新的Promise实例，状态为Rejected。
+
+**两个有用的附加方法---done & finally**
+* done  
+无论Promise对象的回调链以then方法还是catch方法结尾，只要最后一个方法抛出错误，都有可能无法捕捉到（因为Promise内部的错误不会冒泡到全局）。为此，我们可以提供一个done方法，它总是处于回调链的尾端，保证抛出任何可能出现的错误。
+* finally  
+finally方法用于指定不管Promise对象最后状态如何都会执行的操作。它与done方法的最大区别在于，它接受一个普通的回调函数作为参数，该函数不管怎样都必须执行
