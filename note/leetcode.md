@@ -3,7 +3,7 @@
 - [leetcode 刷题](#leetcode-刷题)
   - [sort function list:](#sort-function-list)
     - [通用工具函数](#通用工具函数)
-    - [>BubbleSort Function（冒泡排序）](#bubblesort-function冒泡排序)
+    - [BubbleSort Function（冒泡排序）](#bubblesort-function冒泡排序)
     - [SelectionSort Function（选择排序）](#selectionsort-function选择排序)
     - [InsertSort Function（插入排序）](#insertsort-function插入排序)
     - [ShellSort Function （希尔排序）](#shellsort-function-希尔排序)
@@ -12,6 +12,7 @@
       - [递归java版本](#递归java版本)
       - [迭代版本 C++](#迭代版本-c)
       - [迭代版本 javascript](#迭代版本-javascript)
+    - [QuickSort（快速排序）](#quicksort快速排序)
   - [leetcode Questions list（刷题题目）](#leetcode-questions-list刷题题目)
     - [Remove Duplicates from Sorted Array II](#remove-duplicates-from-sorted-array-ii)
     - [Search in Rotated Sorted Array](#search-in-rotated-sorted-array)
@@ -52,7 +53,7 @@ function exchangeELe(arr, idx1, idx2){
     arr[idx1] = arr[idx1] ^ arr[idx2];
 }
 ```
-### >BubbleSort Function（冒泡排序）
+### BubbleSort Function（冒泡排序）
 ```js
 //两两交换
 /*
@@ -445,6 +446,12 @@ var merge = function(arr, start, mid, end){
         arrs.runTimes = 0;
     mergeSort(arrs)
 ```
+### QuickSort（快速排序）
+**排序原理**  
+1. 首先设定一个分界值，通过该分界值将数组分成左右两部分;
+2. 将大于或等于分界值的数据放到数组右边，小于分界值的数据放到数组的左边。此时左边部分中各元素都小于或等于分界值，而右边部分中各元素都大于或等于分界值
+3. 然后，左边和右边的数据可以独立排序。对于左侧的数据，又可以取一个分界值，将该部分数据分成左右部分，同样在左边放置较小值，右边放置较大值。右侧的数据也做类似处理。
+4. 重复上述过程，可以看出，这是一个递归定义。通过定义左侧部分排好序后，再递归排好右侧部分的顺序。当左侧和右侧两个部分的数据排完序后，整个数组的排序也就完成了。
 
 归并排序是分之思想的最典型的例子，上面的算法中，对a[0...n]进行排序，现将它分为a[0...mid]和a[mid+1...n]两部分，分别通过递归调用将他们单独排序，最后将有序的子数组归并为最终的排序结果。
 ## leetcode Questions list（刷题题目）
