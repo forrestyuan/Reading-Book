@@ -32,7 +32,7 @@
 > O(1) < O(logN) < O(N) < O(NlogN) < O(n^2) < O(n^3) < O(2^N)
 
 
-## sort function list:
+## 排序算法:
 > commonly there have lost of sorted function to match different situation;  
 > As an eligible programer developer, to grasp the sorted algorithm is needed;  
 > Below was the code of different sorted function write in javascript;  
@@ -42,7 +42,7 @@
 > 对于不稳定的排序算法，只要举出一个实例，即可说明它的不稳定性；而对于稳定的排序算法，必须对算法进行分析从而得到稳定的特性。需要注意的是，排序算法是否为稳定的是由具体算法决定的，不稳定的算法在某种条件下可以变为稳定的算法，而稳定的算法在某种条件下也可以变为不稳定的算法。
 
 例如，对于冒泡排序算法，原本是稳定的排序算法，如果将记录交换的条件改成r[j]>=r[j+1]，则两个相等的记录就会交换位置，从而变成不稳定的算法。
-### 通用工具函数
+### 工具函数
 ```js
 /**
 ** util function: exchange two value in array;
@@ -53,7 +53,7 @@ var exchangeELe = function(arr, idx1, idx2){
     arr[idx2] = t;
 }
 ```
-### BubbleSort Function（冒泡排序）
+### 冒泡排序
 ```js
 //两两交换
 /*
@@ -72,7 +72,7 @@ var arrs = [6,5,4,3,2,1];
 bubleSort(arrs);
 console.log(arrs) //output:[1,2,3,4,5,6]
 ```
-### SelectionSort Function（选择排序）
+### 选择排序
 ```js
 // 每次找最小的值交换
 /*
@@ -97,7 +97,7 @@ selectSort(arrs);
 console.log(arrs); // output:[1,2,4,6,7,8,9,10]
 ```
 
-### InsertSort Function（插入排序）
+### 插入排序
 插入排序的工作方式非常像人们排序一手扑克牌一样。开始时，我们的左手为空并且座子上的牌面朝下。然后，我们每次从桌子上拿走一张扑克牌并将它们插入左手中正确的位置。为了找到一张牌的正确位置，我们从右到左将它与已在手中的每张牌进行比较，如下图：  
 ![手握扑克牌](https://raw.githubusercontent.com/forrestyuan/Reading-Book/master/assets/insertSort.jpg)  
 ```js
@@ -154,7 +154,7 @@ insertion(arrs);
 console.log(arrs) //output:[1,2,3,4,5,6,10,12]
 ```
 
-### ShellSort Function （希尔排序）
+### 希尔排序
 希尔排序是一种递减增bai量的排序算法  
 排序原理：  
 
@@ -203,7 +203,7 @@ console.log(arrs) //output:[1,2,3,4,5,6,10,12]
     shell(arrs)
 ```
 
-### mergeSort(归并排序)
+### 归并排序
 将数组不断对半分割，直到只剩一个元素，然后排序合并。  
 
 **迭代法**  
@@ -447,7 +447,7 @@ var merge = function(arr, start, mid, end){
         arrs.runTimes = 0;
     mergeSort(arrs)
 ```
-### QuickSort（快速排序）
+### 快速排序
 **排序原理**  
 1. 首先设定一个分界值，通过该分界值将数组分成左右两部分;
 2. 将大于或等于分界值的数据放到数组右边，小于分界值的数据放到数组的左边。此时左边部分中各元素都小于或等于分界值，而右边部分中各元素都大于或等于分界值
@@ -509,7 +509,14 @@ sort(arr, 0, arr.length - 1)
 
 ```
 
+## 排序算法稳定性
 
+* 冒泡排序： 当交换判断条件包含相等的情况时，是不稳定的，反之是稳定的，**通常的实现情况是稳定的。**
+* 选择排序：不稳定【5(1),3,5(2), 2】，因为5(1)会跟2交换，改变了5(1)和5(2)的顺序。
+* 插入排序：当交换判断条件包含相等的情况时，是不稳定的，反之是稳定的，**通常的实现情况是稳定的。**
+* 希尔排序：不稳定；【4，1，5，3，7，2(1)，1，2(2)】=》【1，2(2)，5，3，7，2(1)，4，1】
+* 归并排序：稳定的
+* 快速排序：不稳定；[45,53,18,36(1),72,30,48,90,15,36(2)]=>[30,36(2),18,36(1),15] 45 [48,93,72,53]
 
 ## leetcode Questions list（刷题题目）
 **********************************
