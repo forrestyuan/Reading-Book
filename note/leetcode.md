@@ -47,10 +47,10 @@
 /**
 ** util function: exchange two value in array;
 **/
-function exchangeELe(arr, idx1, idx2){
-    arr[idx1] = arr[idx1] ^ arr[idx2];
-    arr[idx2] = arr[idx1] ^ arr[idx2];
-    arr[idx1] = arr[idx1] ^ arr[idx2];
+var exchangeELe = function(arr, idx1, idx2){
+	var t = arr[idx1];
+	arr[idx1] = arr[idx2];
+    arr[idx2] = t;
 }
 ```
 ### BubbleSort Function（冒泡排序）
@@ -454,6 +454,65 @@ var merge = function(arr, start, mid, end){
 4. 重复上述过程，可以看出，这是一个递归定义。通过定义左侧部分排好序后，再递归排好右侧部分的顺序。当左侧和右侧两个部分的数据排完序后，整个数组的排序也就完成了。
 
 归并排序是分之思想的最典型的例子，上面的算法中，对a[0...n]进行排序，现将它分为a[0...mid]和a[mid+1...n]两部分，分别通过递归调用将他们单独排序，最后将有序的子数组归并为最终的排序结果。
+
+
+
+**切分原理（重点）**
+
+1. 找一个基准值，用两个指针分别指向数组的头部和尾部
+2. 先从尾部向头部开始搜索一个比基准值小的元素，搜索到即停止，并记录指针的位置；
+3. 再从头部到尾部开始搜索一个比基准值大的元素，搜索到即停止，并记录指针的位置；
+4. 交换当前左边指针位置和右边指针位置的元素；
+5. 重复2,3,4步骤，直到左边指针的值大于右边的值停止；
+
+```javascript
+  var sort = function(a, start, end){
+      if(start >= end){
+          return;
+      }
+      //需要对数组中start索引到end索引处的元素进行分组（左子组和右子组）
+      var splitIndex = partition(a, start, end);
+      //让左子组有序
+      sort(a, start, splitIndex - 1);
+	  //让右子组有序
+      sort(a,splitIndex + 1, end);
+  }
+	
+   var partition = function(a, start, end){
+       //分界值
+       var key = a[start];
+       //定义两个指针，分别指向待切分元素的最小所引处和最大索引处的下一个位置
+       var p1 = start, p2 = end;
+       //切分
+       while(p1 < p2){
+           //接着从右往左扫描，直到找到比分界值小的元素
+           while(p1 < p2 && a[p2] >= key){
+               p2--;
+           }
+	       //先从左往右扫描，直到找到比分界值大的元素
+           while(p1<p2 && a[p1] <= key){
+               p1++;
+           }
+           
+           if(p1 < p2){
+               //否则交换p1和p2索引处元素
+				exchangeEle(a, p1, p2);
+           }
+       }
+       //最后分界值和p1 或 p2索引处元素交换
+       if(p1 != start){
+        exchangeEle(a, start,p1)   
+       }
+       return p1;
+   }
+var arr = [9,8,7,6,5,4,3,2,1];
+sort(arr, 0, arr.length - 1) 
+
+
+```
+
+
+
 ## leetcode Questions list（刷题题目）
 **********************************
 
