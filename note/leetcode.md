@@ -157,6 +157,7 @@ console.log(arrs) //output:[1,2,3,4,5,6,10,12]
 ### ShellSort Function （希尔排序）
 希尔排序是一种递减增bai量的排序算法  
 排序原理：  
+
 1. 选定一个增长量h， 按照增长量h作为数据分组的依据，对数据进行分组
 2. 对分好的每一组数据完成插入排序
 3. 较小增长量，最小减为1，重复第二步操作。
@@ -493,16 +494,13 @@ var merge = function(arr, start, mid, end){
            while(p1<p2 && a[p1] <= key){
                p1++;
            }
-           
+           //交换p1和p2索引处元素
            if(p1 < p2){
-               //否则交换p1和p2索引处元素
 				exchangeEle(a, p1, p2);
            }
        }
        //最后分界值和p1 或 p2索引处元素交换
-       if(p1 != start){
         exchangeEle(a, start,p1)   
-       }
        return p1;
    }
 var arr = [9,8,7,6,5,4,3,2,1];
