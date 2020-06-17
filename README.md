@@ -52,6 +52,7 @@
 - [x] [Vue watch and computed 不同点](https://github.com/forrestyuan/Reading-Book/tree/master/note/Vue%20watch%20and%20computed%20不同点.md)
 - [x] [Vue.extend & Vue.component 区别](https://github.com/forrestyuan/Reading-Book/tree/master/note/VEVC.md)
 - [x] [牛客网网络知识题记](https://github.com/forrestyuan/Reading-Book/tree/master/note/牛客网做题笔记.md)
-- [ ] [Javascript笔记本](https://github.com/forrestyuan/Reading-Book/blob/master/note/Javascript%20%E7%AC%94%E8%AE%B0%E6%9C%AC%EF%BC%88%E4%B8%80%EF%BC%89.md)
-- [ ] [JavaScript笔记本二](https://github.com/forrestyuan/Reading-Book/tree/master/note/javascript%20笔记本二.md)
+- [x] [Javascript笔记本](https://github.com/forrestyuan/Reading-Book/blob/master/note/Javascript%20%E7%AC%94%E8%AE%B0%E6%9C%AC%EF%BC%88%E4%B8%80%EF%BC%89.md)
+- [x] [JavaScript笔记本二](https://github.com/forrestyuan/Reading-Book/tree/master/note/javascript%20笔记本二.md)
+- [x] [Javascript 笔记本三.md](https://github.com/forrestyuan/Reading-Book/tree/master/note/Javascript笔记本三.md)
 
