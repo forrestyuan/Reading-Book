@@ -14,9 +14,11 @@
       - [迭代版本 javascript](#迭代版本-javascript)
     - [快速排序](#快速排序)
   - [排序算法稳定性](#排序算法稳定性)
+  - [二叉搜索树](#二叉搜索树)
   - [leetcode Questions list（刷题题目）](#leetcode-questions-list刷题题目)
     - [Remove Duplicates from Sorted Array II](#remove-duplicates-from-sorted-array-ii)
     - [Search in Rotated Sorted Array](#search-in-rotated-sorted-array)
+    - [两数之和](#两数之和)
 
 <!-- /TOC -->
 # leetcode 刷题
@@ -519,6 +521,9 @@ sort(arr, 0, arr.length - 1)
 * 归并排序：稳定的
 * 快速排序：不稳定；[45,53,18,36(1),72,30,48,90,15,36(2)]=>[30,36(2),18,36(1),15] 45 [48,93,72,53]
 
+## 二叉搜索树
+[代码](https://github.com/forrestyuan/Reading-Book/tree/master/code/tree.js)
+
 ## leetcode Questions list（刷题题目）
 **********************************
 
@@ -638,3 +643,15 @@ function retriveSearch(list, start, end, target){
     
 }
 ```
+### 两数之和
+**解题思路**  
+一开始最先想到的就是使用暴力搜索，这种情况下时间复杂度为：O(n^2),自然是不可接受的。
+这道题可以使用map的数据结构来解决，将时间复杂度降到O(n), 不过空间复杂度也为O(n)。
+1. 遍历整个数组，在添加遍历的当前值`{value:index1}`到map之前，先判断一下map里有没有`{(target-value):index2}`
+    * 如果找到了就直接返回`[index2, index1]`，程序终止。
+    * 如果没有找到，就继续第2步骤
+2. 此时将遍历的当前值`{value:index1}`添加到map，添加之前需要判断map中key为`value`的键值对是否存在
+    * 如果存在不再添加进去，继续执行第1步骤  
+    
+**代码**  
+[两数之和代码](https://github.com/forrestyuan/Reading-Book/tree/master/code/两数之和.js)
