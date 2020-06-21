@@ -109,7 +109,7 @@ class BinaryTree {
   //后序遍历
   lastOrder(node){
     let res = [];
-    this._inOrder(node, res);
+    this._lastOrder(node, res);
     return res;
   }
   _lastOrder(node, res){
@@ -119,6 +119,36 @@ class BinaryTree {
     this._lastOrder(node.left, res);
     this._lastOrder(node.right, res);
     res.push(node.val);
+  }
+
+  //层次遍历
+  layerOrder(node){
+    let res = [];
+    let queue = [];
+    if(node == null) return null;
+    queue.push(node);
+    while(queue.length){
+      let cur = queue.shift();
+      res.push(cur.val);
+      cur.left == null ? false : queue.push(cur.left);
+      cur.right == null ? false :queue.push(cur.right);
+    }
+    return res;
+  }
+  //树的深度
+  depth(node){
+    if(node == null){
+      return 0;
+    }
+    let maxL = 0;
+    let maxR = 0;
+    if(node.left != null){
+      maxL = this.depth(node.left);
+    }
+    if(node.right != null){
+      maxR = this.depth(node.right);
+    }
+    return maxL > maxR? maxL + 1 : maxR + 1;
   }
 }
 
@@ -134,6 +164,10 @@ console.log("前中后序遍历");
 console.log(btree.preOrder(btree.root).toString());
 console.log(btree.inOrder(btree.root).toString());
 console.log(btree.lastOrder(btree.root).toString());
+console.log("层次遍历");
+console.log(btree.layerOrder(btree.root).toString());
+console.log("树的深度");
+console.log(btree.depth(btree.root));
 console.log("查询62,42,420结果：");
 console.log(btree.search(62));
 console.log(btree.search(42));
