@@ -5,7 +5,8 @@
 
 ![reading](https://raw.githubusercontent.com/forrestyuan/Reading-Book/master/assets/reading.jpg)
 ## 阅读
-技术类书籍：
+技术类：
+- [ ] [v8 engine](https://github.com/forrestyuan/Reading-Book/tree/master/note/v8Engine.md)
 - [ ] [leetcode program](https://github.com/forrestyuan/Reading-Book/tree/master/note/leetcode.md)
 - [ ] [Javascript DOM 编程艺术（第二版）](https://github.com/forrestyuan/Reading-Book/tree/master/note/javascriptDOM编程艺术.md)
 - [x] HTML5布局之路
@@ -22,7 +23,7 @@
 - [x] 深入浅出Node.js （朴灵）
 - [x] 面向对象编程精要 
 
-非技术书籍：
+非技术：
 
 - [x] [活着 （余华）](https://github.com/forrestyuan/Reading-Book/tree/master/note/活着.md)
 - [X] [第七天（余华）](https://github.com/forrestyuan/Reading-Book/tree/master/note/第七天.md)
