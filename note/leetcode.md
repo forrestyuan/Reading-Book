@@ -15,15 +15,18 @@
     - [1.1.7. 快速排序](#117-快速排序)
   - [1.2. 排序算法稳定性](#12-排序算法稳定性)
   - [1.3. 二叉搜索树](#13-二叉搜索树)
-  - [1.4. leetcode Questions list（刷题题目）](#14-leetcode-questions-list刷题题目)
-    - [1.4.1. Remove Duplicates from Sorted Array II](#141-remove-duplicates-from-sorted-array-ii)
-    - [1.4.2. Search in Rotated Sorted Array](#142-search-in-rotated-sorted-array)
-    - [1.4.3. 两数之和](#143-两数之和)
-    - [1.4.4. 反转整数](#144-反转整数)
-    - [1.4.5. 判断回文数](#145-判断回文数)
-    - [1.4.6. 罗马数字转整数](#146-罗马数字转整数)
-    - [1.4.7. 数组中的第k个最大元素](#147-数组中的第k个最大元素)
-    - [两个栈实现队列](#两个栈实现队列)
+  - [1.4. 堆](#14-堆)
+  - [1.5. 优先队列](#15-优先队列)
+  - [1.6. leetcode Questions list（刷题题目）](#16-leetcode-questions-list刷题题目)
+    - [1.6.1. Remove Duplicates from Sorted Array II](#161-remove-duplicates-from-sorted-array-ii)
+    - [1.6.2. Search in Rotated Sorted Array](#162-search-in-rotated-sorted-array)
+    - [1.6.3. 两数之和](#163-两数之和)
+    - [1.6.4. 反转整数](#164-反转整数)
+    - [1.6.5. 判断回文数](#165-判断回文数)
+    - [1.6.6. 罗马数字转整数](#166-罗马数字转整数)
+    - [1.6.7. 数组中的第k个最大元素](#167-数组中的第k个最大元素)
+    - [1.6.8. 两个栈实现队列](#168-两个栈实现队列)
+    - [1.6.9. 跳水板](#169-跳水板)
 
 <!-- /TOC -->
 # 1. leetcode 刷题
@@ -527,15 +530,46 @@ sort(arr, 0, arr.length - 1)
 * 快速排序：不稳定；[45,53,18,36(1),72,30,48,90,15,36(2)]=>[30,36(2),18,36(1),15] 45 [48,93,72,53]
 
 ## 1.3. 二叉搜索树
-[代码](https://github.com/forrestyuan/Reading-Book/tree/master/code/tree.js)
+[代码](https://github.com/forrestyuan/Reading-Book/tree/master/code/tree.js)  
 
-## 1.4. leetcode Questions list（刷题题目）
+## 1.4. 堆
+1. 时间复杂度O(NlogN)，额外空间复杂度O(1)
+
+2. 二叉树：
+(1)完全二叉树：要么是一棵满二叉树(满二叉树属于完全二叉树)；如果不是满二叉树，那么这棵树应该是从左往右依次补齐的。  
+(2)通过数组来理解完全二叉树，对于节点i，在不越界的情况下左孩子的下标是2i+1，右孩子下标是2*i+2，如果数组越界了，那就说明右孩子不存在。对于节点i，它的的父节点的下标是(i-1)/2。0的父节点是自己。  
+
+3. 大根堆(堆就是一棵完全二叉树)，即在一棵完全二叉树中，任何一棵子树的最大值都是这课子树的头部，小根堆同理，任何一棵子树的最小值都是这课子树的头部，对于任何一棵子树都是这样的。建立大根堆的时间复杂度是O(N)，heapinsert的调整，经历一个新节点加入到这棵树种，同时向上调整的过程。对于i号节点加入进来调整的代价是O(log(i-1))，第i+1个节点加入进来调整的代价是O(log(i))，对于n个节点的调整代价是log1+log2+log3+......+log(n-1)，这是整个数组所有节点加进来变成完全二叉树的时间复杂度O(N)，再重复一遍，建立大根堆的时间复杂度是O(N)。把节点加入到堆的最后一个位置，然后将节点向上调整的过程。
+
+4. 堆结构非常重要：堆可以搞定几乎所有的贪心算法。  
+5. 堆排序非常重要  
+　(1) 堆排序heap insert与heapify。  
+　(2) 堆结构的增大与减少。  
+　(3) 如果只是建立堆得过程，时间复杂度为O(N)。  
+　(4) 优先级队列结构，就是堆结构。  
+
+6. 数组堆排序的过程：  
+  (1) 让数组变成大根堆，然后将堆顶元素弹出，调整堆，继续之前操作。
+
+
+## 1.5. 优先队列  
+普通队列是一种先进先出的数据结构，元素在队尾追加，从队头弹出。某些情况下，我们可能需要找出队列中的最大值或者最小值，例如使用一个队列保存计算机的任务，一般情况下计算机的任务都是有优先级的，我们需要在这些计算机的任务中找出优先级最高的任务先执行，执行完毕后需要把这个任务从队列中移除。普通队列完成这个任务需要每次遍历队列从中找出最大值，效率不高。这时可以使用优先队列来实现。
+
+优先队列按照其作用不同，可以分为以下两种：  
+* 最大优先队列[代码](https://github.com/forrestyuan/Reading-Book/tree/master/code/priority.js)：  
+    可以获取并删除队列中最大值。  
+* 最小优先队列[代码](https://github.com/forrestyuan/Reading-Book/tree/master/code/priority.js)：  
+    可以获取并删除队列中最小值。  
+* 索引优先队列：  
+    
+
+## 1.6. leetcode Questions list（刷题题目）
 **********************************
 
 <p style="text-align:center;font-weight:700;font-size:20px;color:red;"> I am the split line 👌</p>  
 
 **********************************
-### 1.4.1. Remove Duplicates from Sorted Array II
+### 1.6.1. Remove Duplicates from Sorted Array II
 > Follow up for "Remove Duplicates": what if duplicates are allowed at most twice?  
 > For example, Given sorted array A = [1,1,1,2,2,3,4,5,5],  
 > Your function should return length = 8, A = [1,1,2,2,3,4,5,5]  
@@ -573,7 +607,7 @@ a = null;
 console.log(res)
 ```
 
-### 1.4.2. Search in Rotated Sorted Array
+### 1.6.2. Search in Rotated Sorted Array
 > Suppose a sorted array is rotated at some pivot unknown to you beforehand  
 > (i.e. 0 1 2  4 5 6 7 might become 4 5 6  7 0 1 2).  
 > You are given a target value to search. if found in the array return its index,
@@ -648,7 +682,7 @@ function retriveSearch(list, start, end, target){
     
 }
 ```
-### 1.4.3. 两数之和
+### 1.6.3. 两数之和
 **解题思路**  
 一开始最先想到的就是使用暴力搜索，这种情况下时间复杂度为：O(n^2),自然是不可接受的。
 这道题可以使用map的数据结构来解决，将时间复杂度降到O(n), 不过空间复杂度也为O(n)。
@@ -661,27 +695,27 @@ function retriveSearch(list, start, end, target){
 **代码**  
 [两数之和代码](https://github.com/forrestyuan/Reading-Book/tree/master/code/两数之和.js)
 
-### 1.4.4. 反转整数
+### 1.6.4. 反转整数
 **解题思路**  
 方法一： 转成字符串处理，直接反转，判断溢出和正负。
 方法二： 依次通过取模将每一位的值取出存到一个数组，后续对数组进行处理，判断溢出和正负。
 **代码**  
 [反转整数代码](https://github.com/forrestyuan/Reading-Book/tree/master/code/反转整数.js)
 
-### 1.4.5. 判断回文数
+### 1.6.5. 判断回文数
 **解题思路**  
 将数组转换为字符串，给两个指针分别头尾往中间走，在头指针小于等于尾指针的区间内都满足头指针指向的值等于尾指针指向的值，
 那么这就满足回文数的条件,返回true。如果是负数，直接返回false
 **代码**  
 [判断回文数](https://github.com/forrestyuan/Reading-Book/tree/master/code/判断回文数.ts)
 
-### 1.4.6. 罗马数字转整数
+### 1.6.6. 罗马数字转整数
 **解题思路**  
 使用switch或者map。
 **代码**  
 [罗马数字转整数](https://github.com/forrestyuan/Reading-Book/tree/master/code/罗马数字转整数.js)
 
-### 1.4.7. 数组中的第k个最大元素
+### 1.6.7. 数组中的第k个最大元素
 在未排序的数组中找到第 k 个最大的元素。请注意，你需要找的是数组排序后的第 k 个最大的元素，而不是第 k 个不同的元素。
 
 示例 1:   
@@ -702,9 +736,14 @@ function retriveSearch(list, start, end, target){
 **代码**  
 [数组中的第k个最大元素](https://github.com/forrestyuan/Reading-Book/tree/master/code/数组中的第k个最大元素.js)
 
-### 两个栈实现队列
+### 1.6.8. 两个栈实现队列
 **解题思路**  
 方法一：使用pop()和push()函数
 方法二：直接遍历，不使用pop和push
 **代码**  
 [两个栈实现队列](https://github.com/forrestyuan/Reading-Book/tree/master/code/两个栈实现队列.js)
+
+### 1.6.9. 跳水板
+你正在使用一堆木板建造跳水板。有两种类型的木板，其中长度较短的木板长度为shorter，长度较长的木板长度为longer。你必须正好使用k块木板。编写一个方法，生成跳水板所有可能的长度。
+**代码**  
+[跳水板](https://github.com/forrestyuan/Reading-Book/tree/master/code/跳水板.js)
