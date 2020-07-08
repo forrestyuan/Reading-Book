@@ -58,3 +58,10 @@
 - [x] [JavaScript笔记本二](https://github.com/forrestyuan/Reading-Book/tree/master/note/javascript%20笔记本二.md)
 - [x] [Javascript 笔记本三.md](https://github.com/forrestyuan/Reading-Book/tree/master/note/Javascript笔记本三.md)
 
+库：
+1. [hammerjs](http://hammerjs.github.io/getting-started/)
+
+网站：
+[站酷](https://www.zcool.com.cn/)
+[设计达人](https://www.shejidaren.com/)
+[ELF 灵活可扩展的 HTML5构建工具](https://elf.aotu.io/)
