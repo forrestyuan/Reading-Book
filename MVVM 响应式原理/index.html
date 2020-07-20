@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <h2>{{person.name}} -- {{person.age}}</h2>
+    <h3>{{person.fav}}</h3>
+    <ul>
+      <li>12</li>
+      <li>33</li>
+      <li>44</li>
+    </ul>
+    <h3>{{inputList.msg}}</h3>
+    <div v-text="inputList.msg"></div>
+    <button v-on:click="handleClick">点击我</button>
+    <button @click="handleClick">点击我2</button>
+    <img style="width:150px" v-bind:src="imagelink" alt="">
+    <img style="width:150px" :src="imagelink" alt="">
+    <div v-text="person.fav"></div>
+    <div v-html="htmlStr"></div>
+    <input type="text" v-model="inputList.msg">
+  </div>
+  <script src="Observer.js"></script>
+  <script src="MVue.js"></script>
+  <script>
+    let vm = new MVue({
+      el:"#app",
+      data:{
+        person:{
+          name:"小马哥",
+          age: 18,
+          fav:'女生'
+        },
+        imagelink:"https://cn.vuejs.org/images/data.png",
+        htmlStr:"大叫好啊，哈哈哈哈",
+        inputList:{
+          msg:"学习MVVM原理"
+        }
+      },
+      methods: {
+        handleClick(){
+          console.log("handleClick:"+this.$data.person.name)
+          console.log(this)
+        }
+      },
+    })
+  </script>
+</body>
+</html>
