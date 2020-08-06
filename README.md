@@ -6,6 +6,7 @@
 ![reading](https://raw.githubusercontent.com/forrestyuan/Reading-Book/master/assets/reading.jpg)
 ## 阅读
 技术类：
+- [ ] [weex note](https://github.com/forrestyuan/Reading-Book/tree/master/note/weex.md)
 - [ ] [v8 engine](https://github.com/forrestyuan/Reading-Book/tree/master/note/v8Engine.md)
 - [ ] [bootstrap source code](https://github.com/forrestyuan/Reading-Book/tree/master/note/bootstrap.md)
 - [ ] [leetcode program](https://github.com/forrestyuan/Reading-Book/tree/master/note/leetcode.md)
@@ -52,6 +53,7 @@
 
 
 额外阅览（Non-Book）：
+- [x] [Git 分支开发规范](https://www.cnblogs.com/lujiangping/p/10910558.html)
 - [x] [Vue watch and computed 不同点](https://github.com/forrestyuan/Reading-Book/tree/master/note/Vue%20watch%20and%20computed%20不同点.md)
 - [x] [Vue.extend & Vue.component 区别](https://github.com/forrestyuan/Reading-Book/tree/master/note/VEVC.md)
 - [x] [牛客网网络知识题记](https://github.com/forrestyuan/Reading-Book/tree/master/note/牛客网做题笔记.md)

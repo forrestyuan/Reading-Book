@@ -45,17 +45,17 @@
 1. HTML事件处理程序
 2. DOM 0 级事件处理程序： 先把元素取出来让这个事件以这个对象属性的形式添加事件。（eg:`button.onclick = function(){....}`）;
 3. * DOM 2 级事件处理程序：（IE8不支持）  
-  DOM2级事件定义了两个方法：`addEventListener()` 和 `removeEventListener()`。方法接受三个参数，事件名、处理事件的函数、决定是在捕获阶段（true）调用函数还冒泡阶段（false）调用函数的布尔值。  
+    DOM2级事件定义了两个方法：`addEventListener()` 和 `removeEventListener()`。方法接受三个参数，事件名、处理事件的函数、决定是在捕获阶段（true）调用函数还冒泡阶段（false）调用函数的布尔值。  
    * 对于IE浏览器，其有自身的方法：  
-  `attachEvent()`、`detachEvent()`。接受两个参数，事件名、处理事件的函数。  
-  IE8以及更早版本的只支持事件冒泡。
+    `attachEvent()`、`detachEvent()`。接受两个参数，事件名、处理事件的函数。  
+    IE8以及更早版本的只支持事件冒泡。
 
 ### 1.2.2. 🖊 事件对象
 1. 在触发DOM上的事件时都会产生一个事件对象event，通常为了兼容IE，需要写成 `event = event || window.event`。
-  ① 阻止事件冒泡：`event.stopPropagation()`;IE中为`cancelBubble()`;
-  ② 阻止事件的默认行为： `event.preventDefault()`;IE中为`returnValue`属性为false即可阻止。
-  ③ type属性： 获得事件类型
-  ④ target属性：获取事件目标，在IE中，用srcElement。
+    ① 阻止事件冒泡：`event.stopPropagation()`;IE中为`cancelBubble()`;
+    ② 阻止事件的默认行为： `event.preventDefault()`;IE中为`returnValue`属性为false即可阻止。
+    ③ type属性： 获得事件类型
+    ④ target属性：获取事件目标，在IE中，用srcElement。
 
 ## 1.3. AJAX
 
@@ -97,10 +97,11 @@
 3. 返回第二步的操作结果Result(2).
 
 `[[Class]]`是一个内部属性,所有的对象(原生对象和宿主对象)都拥有该属性.在规范中,`[[Class]]`是这么定义的：  
+
 内部属性|	描述
 ------|-------
 `[[Class]]`|	一个字符串值,表明了该对象的类型.
- 
+
 
 看这里重点: `[[Class]]` 表明了该对象的类型  
 
@@ -111,6 +112,7 @@
 属性访问表达式运算得到一个数组元素的值，JS定义了两种方式：  
 `expression.identifier`  
 `expression[identifier]`
+
 > 注：方括号比“.”的性能高。
 
 
@@ -278,10 +280,10 @@ console.log(square.width); 　　　　 // 6
 console.log(square.getArea()); 　　// 36
 ```
 
+## 执行上下文堆栈
 
-<!-- ## 1.7. 执行上下文堆栈
 这里有三种ECMAScript代码，全局代码、函数代码、eval代码。每一个代码是在其执行上下文中被求值的。只有一个全局上下文。
-一个出发其它上下文的上下文叫做**caller**。被触发的上下文叫做**callee**。callee在同一时间内可能是一些其它callee的caller（比如，一个在全局上下文中被调用的函数，之后调用了一些内部函数）。  
+一个触发其它上下文的上下文叫做**caller**。被触发的上下文叫做**callee**。callee在同一时间内可能是一些其它callee的caller（比如，一个在全局上下文中被调用的函数，之后调用了一些内部函数）。  
 当一个caller触发（调用）了一个callee，这个caller会暂缓自身的执行，然后把控制权传递给callee。这个callee被push到栈中，成为一个运行中的执行上下文。在callee的执行上下文结束后，它会把控制权返回给caller，然后caller上下文继续执行直到结束。
 
 * **执行上下文**
@@ -301,6 +303,7 @@ console.log(square.getArea()); 　　// 36
 ## 1.8. 函数参数
 参数对象（argument对象）是所有（非箭头）函数中可用的局部变量。参数对象就像通配符，可以向数组一样对其遍历来访问任意数量的参数。argument对象不是要给Array,它类似于Array,但除了length属性和索引外没有任何Array的属性。例如，它没有pop方法。  
 可以通过特殊手段，将其转换为一个真正的Array。
+
 ```js
   var args = Array.prototype.slice.call(arguments);
   var args = [].slice.call(arguments) ;
@@ -499,7 +502,7 @@ js引擎创建了 **执行上下文栈** （Execution context stack, ECS）来�
 
 执行上下文的代码会分成两个阶段进行处理：分析和执行：
 1. 进行执行上下文： 当进入执行上下文，这时候还没有执行代码。
-  变量对象会包括：
+    变量对象会包括：
     * 函数的所有形参（如果是函数上下文）
       * 由名称和对应值组成的一个变量对象的属性被创建
       * 没有实参，属性值设为undefied
