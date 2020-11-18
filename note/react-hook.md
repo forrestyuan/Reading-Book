@@ -145,4 +145,181 @@ const UseMemoExample = () => {
     </div>
   )
 }
+
+export default ()=>{
+  const [count, setCount] = useState(0)
+  const add = useCallback(()=>{
+    setCount(x => x + 1)
+  }, [])
+  return (
+    <div>
+      {count}
+      <button onClick={add}>
+        Add
+      </button>
+    </div>
+  )
+}
+```
+----
+**建议**
+1. 使用react.memo减少重绘次数
+2. hooks同步问题
+3. 可以构造自己的hooks封装行为
+4. 不要再思考生命周期
+
+
+----
+**实践：拖拽列表**
+![react-hook](https://raw.githubusercontent.com/forrestyuan/Reading-Book/master/assets/react-hook.png)
+
+> APP.js
+```js
+//APP.js
+import React, {} from 'react'
+import './styles.css
+import useDraggable from './useDraggable'
+const list = [{src:'',title:'吃吃吃'}]
+export default function App(){
+
+}
+function DraggableList({list}){
+  const {dragList} = useDraggable(list)
+  return dragList.map((itme, i) => {
+    if(item.type === "BAR"){
+      return <Bar id={i} key={item.id} />
+    }else{
+      return (
+        <Draggable key={item.id}>
+          <Card {...item.data} />
+        </Draggable>
+      )
+    }
+  })
+  
+  <div className='draggable-list'>
+    
+  </div>
+}
+//list
+//Draggable
+//Bar
+//
+function Draggable({children}){
+  return <div draggable={true} className='draggable'>{children}</div>
+}
+
+function Bar(){
+  return <div className="draggable--bar"></div>
+}
+
+function Card({src, title}){
+  return <div className="card">
+    <img src={src}/>
+    <span>{title}</span>
+  </div>
+}
+```
+> useDraggable.js
+```js
+//useDraggable.js
+import {useState} from 'react'
+const BAR = "BAR"
+const DRAGGABLE = "DRAGGABLE"
+function draggable(item, id){
+  return {
+    type: DRAGGABLE,
+    id,
+    data: item
+  }
+}
+function insertBars(list){
+  let i  = 0;
+  const newBar = () => {
+    return {
+      type: BAR,
+      type: i++
+    }
+  }
+  return [newBar()].concat(
+    ...list.map(item => {
+      return [draggable(item, id++), newBar()]
+    })
+  )
+}
+function useDraggable(list){
+  cosnt [dragList, setDragList] = useState(() => {
+    return insertBars(list)
+  })
+
+  const [dragOver, setDragOver] = useState(null)
+  const [dragging, setDragging] = useState(null)
+
+  return {
+    dragList,
+    createDropperProps: id => {
+      return {
+        id,
+        key: id,
+        dragging,
+        dragOver,
+        eventHandlers:{
+          onDragOver:(e) =>{
+            e.preventDefault()
+            setDragOver(id)
+          },
+          onDragLeave:(e) =>{
+            e.preventDefault()
+            setDragOver(null)
+          },
+        }
+      }
+    }
+    createDraggerProps: id => {
+      return {
+        id,
+        key:id,
+        dragging,
+        eventHandlers: {
+          onDragStart: () =>{
+            setDragging(id)
+          },
+          onDragEnd:() =>{
+            setDragging(null)
+          }
+        }
+      }
+    }
+  }
+}
+
+export default useDraggable
+```
+
+```css
+/*styles.css*/
+.App{
+  font-family: sans-serif;
+  text-align: center;
+}
+.draggable--bar{
+  padding: 10px;
+}
+.card {
+  display:flex;
+  align-items: center;
+  padding:10px;
+  box-shadow: grey 1px 2px 3px;
+  cursor: pointer;
+  user-select:none
+}
+.card img{
+  border-radius:36px;
+  width:72px;
+  height:72px;
+}
+
+.card span{
+  margin-left:20px
+}
 ```
