@@ -323,3 +323,21 @@ export default useDraggable
   margin-left:20px
 }
 ```
+
+
+## 其他来源补充
+
+1. react hooks 的管理是基于顺序的。
+```js
+export const ()=>{
+  const [age, setAge] = useState(0)
+  const [name, setName] = useState('')
+  const [display, setDisplay] = useState(false)
+  //如果只有if没有else是会报错的，因为一开始age<=0的情况下，是只有三个state的hook，但是age>0时突然多了一个effect hook。假如我们加上一个else，那么无论if是否成立都会在第四位是一个effect的hook，react则不会报错。但是通常不这样做。
+  if(age > 0 ){
+    useEffect(()=>{
+      setDislay(true)
+    },[])
+  }
+}
+```
