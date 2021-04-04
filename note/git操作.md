@@ -1,3 +1,68 @@
+1. 常见的linux命令介绍
+touch 1.txt //创建一个文件   
+mkdir mydir //创建一个目录  
+ls //查看当前目录内容  
+cat//查看文件内容  
+vim//打开文件编辑器  
+rm //删除文件  
+....  
+
+2. git入门指引
+* git rm --cached filename //将已添加到暂存区的文件删除，变回已修改的状态
+* 对于git config中的user.name 与 user.email来说，有2个地方可以设置
+  * 计算机全局 git config --global（添加）  | git config --global unset ...(删除)
+  * 项目区域性 git config --local（添加） | git config --local unset ...(删除)
+* git commit --amend -m '修正上一次提交的title'// 用来修正上次提交的说明
+* git log -number  查看最近number条的提交记录
+3.  .gitignore文件与分支  
+.gitignore 文件里描述的是提交到远程仓库时被忽略的文件。
+    ```bash
+    *.a #忽略所有.a结尾的文件
+    !lib.a # 但是lib.a除外
+    /TODO # 仅仅忽略项目根目录下的TODO文件，不包括subdir/TODO
+    build/  # 忽略build目录下的所有文件
+    doc/*.txt # 会忽略doc/note.txt但不包括doc/server/sample.txt
+    doc/**/*.txt # 一个星号是一层，两个星号是所有层
+    ```
+    `cd - `会回到上一次的目录
+4. 再谈git分支
+* `fast-forward`  
+如果可能，合并分支时Git会使用fast-forward模式  
+在这种模式下，删除分支时会丢掉分支信息  
+合并时加上 `--no-ff`参数会禁用`fast-forward`模式，这样会多出一个commit id  
+  ```bash
+  git merge --no-ff dev
+  ```
+* git 回退版本  
+  返回到上一版本
+  ```bash
+  git reset --hard HEAD^     #
+  git reset --hard HEAD~1    #
+  git reset --hard commit_id #
+  ```
+  返回到某一个版本`git reflog`
+5. git标签  
+  新建标签有两种：轻量级标签，带有附注标签
+  * 轻量级标签
+    ```bash
+    git tag v1.0.1
+    ```
+  * 带有附注的标签
+    ```bash
+    git tag -a v1.0.2 -m 'release version'
+    ```
+    删除标签：`git tag -d tag_name`  
+    `git push`并不会把tag标签传送到远端服务器上，只有通过显式命令才能分享标签到远端仓库。
+    * push单个tag，命令格式为：`git push origin [tagname]`例如：
+      ```bash
+      git push origin v1.0     #将本地v1.0的tag推送到远端服务器
+      ```
+    * push所有tag，命令格式为：`git push [origin] --tags`例如： 
+      ```bash
+      git push --tags
+      #或
+      git push origin --tags
+      ```
 ### 1. 解决冲突
 ```bash
 #暂存现有代码
