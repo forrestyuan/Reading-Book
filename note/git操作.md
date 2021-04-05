@@ -63,6 +63,45 @@ rm //删除文件
       #或
       git push origin --tags
       ```
+6. 将本地新建的仓库推到远程仓库
+    ```bash
+    git remote add origin <仓库地址>
+    git push -u origin master
+    ```
+7. 远程分支和本地分支
+    ```bash
+    git push origin develop:develop # 推送本地develop分支到远程develop分支
+    git pull origin develop:develop # 拉取远程develop分支到本地develop分支
+    ```
+8. git submodule
+    ```bash
+    # 引用子模块
+    git add submodule git@github.com:gitlecture/git_child.git mymodule
+    # 拉取所有的子模块
+    git submodule foreach git pull
+    ```
+    如果第一次克隆远程仓库，这个仓库里包含了子模块，初始情况我们`git clone`下来后需要手动初始化一下子模块的数据。
+    ```bash
+    git clone <parentmodule>
+    git submodule init
+    git submodule update --recursive
+    # 或者一次性
+    git clone <parentmodule> --recursive
+    ```
+    删除子模块
+    ```bash
+    git rm --cached <子模块名称>
+    git rm submodule
+    ```
+9. git subtree  
+   类似与git submodule，git subtree可以双向修改代码 
+10. git cherry-pick  
+    git cherry-pick命令的作用，就是将指定的提交（commit）应用于其他分支。
+    ```bash
+    git cherry-pick <commitHash>
+    ```
+11. git rebase   
+    类似与merge，merge会产生一个新的提交。
 ### 1. 解决冲突
 ```bash
 #暂存现有代码
@@ -78,34 +117,35 @@ git merge
 # 最后把暂存的代码释放出来
 git stash pop 
 ```
-# 创建本地分支并且关联远程分支develop
+
+### 创建本地分支并且关联远程分支develop
 git checkout develop
 
-# 更新本地分支develop
+### 更新本地分支develop
 git pull --ff
 
-# 创建本地分支，并切换到feature
+### 创建本地分支，并切换到feature
 git checkout -b feature
 
-# 提交代码
+### 提交代码
 git commit -a -m "xxx"
 
-# 切换开发分支拉取最新代码, 并返回feature分支(避免在develop分支上冲突)
+### 切换开发分支拉取最新代码, 并返回feature分支(避免在develop分支上冲突)
 git checkout develop
 git pull --ff
 git checkout feature
 
-# 合并分支 rebase （可能产生冲突）
+### 合并分支 rebase （可能产生冲突）
 git rebase develop
 
-# 切换至develop分支, 并合并分支
+### 切换至develop分支, 并合并分支
 git checkout develop
 git merge --no-ff feature 
 
-# 提交代码
+### 提交代码
 git push
 
-# 其他参考学习
+### 其他参考学习
 
 #### 1. 配置git, 保存户名、密码等
 + (1) git config --list                    //查看当前git配置
