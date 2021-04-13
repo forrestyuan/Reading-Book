@@ -1,0 +1,1 @@
+Typescript是javascript语言的超集。Typescript拥有类型检测机制。
