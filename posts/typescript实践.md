@@ -17,6 +17,10 @@
       - [1.4.4.6. 🚀 范型操作符](#1446--范型操作符)
     - [1.4.5. 🚀 类（Class）](#145--类class)
     - [1.4.6. 🚀 Utility Types (🔥)](#146--utility-types-)
+- [2. 深入理解 typescript](#2-深入理解-typescript)
+  - [typescript 项目](#typescript-项目)
+    - [编译上下文](#编译上下文)
+    - [声明空间](#声明空间)
 
 # 1. TypeScript
 
@@ -24,7 +28,7 @@
 
 TypeScript 是一种由微软开发的自由和开源的编程语言，它是 Javascript 的一个超集，扩展了 Javascript 的语法。发展至今，已经成为大型项目的标配，其提供的静态类型系统，大大增强了代码的可读性以及可维护性；同时，它提供最新和不断发展的 JavaScript 特性，能让我们建立更健壮的组件。
 
-[npm下载量🔗](https://npm-stat.com/charts.html?package=typescript&from=2013-01-01&to=2021-03-31)
+[npm 下载量 🔗](https://npm-stat.com/charts.html?package=typescript&from=2013-01-01&to=2021-03-31)
 
 **背景**  
 TypeScript 起源于使用 Javascript 开发的大型项目 。由于 Javascript 语言本身的局限性，难以胜任和维护大型项目开发。因此微软开发了 TypeScript ，使得其能够胜任开发大型项目。  
@@ -386,6 +390,7 @@ function handler(event: Event) {
   const element = (event as any) as HTMLElement; // ok
 }
 ```
+
 当 S 类型是 T 类型的子集，或者 T 类型是 S 类型的子集时，S 能被成功断言成 T。这是为了在进行类型断言时提供额外的安全性，完全毫无根据的断言是危险的，如果你想这么做，你可以使用 any。
 
 ### 1.4.3. 接口 🔌
@@ -521,7 +526,9 @@ getProperty(x, "m"); //报错，m不在x的key中
 ```
 
 #### 1.4.4.5. 🚀 在范型中使用类类型
-当使用泛型在TypeScript中创建工厂时，有必要通过构造函数引用类类型。
+
+当使用泛型在 TypeScript 中创建工厂时，有必要通过构造函数引用类类型。
+
 ```ts
 function create<Type>(c: { new (): Type }): Type {
   return new c();
@@ -901,7 +908,7 @@ class MyClass {
 ```
 
 **类继承**  
-TypeScript 中的类可以继承（实现）多个接口，继承接口用`implements`,继承基类用`extends`。派生类可以重写基类字段或属性。用 `super .` 的方式访问基类方法或属性。
+TypeScript 中的类可以实现多个接口，继承类只能继承一个。继承接口用`implements`,继承基类用`extends`。派生类可以重写基类字段或属性。用 `super .` 的方式访问基类方法或属性。
 
 ```ts
 //继承多接口
@@ -1175,3 +1182,39 @@ type T0 = ReturnType<() => string>;
 ```
 
 除了以上这些，还有很多官方实现的类型工具[`InstanceType<Type>`], [`ThisParameterType<Type>`], [`OmitThisParameter<Type>`], [`ThisType<Type>`],[`Lowercase<StringType>`], [`Uppercase<StringType>`], [`Capitalize<StringType>`], [`Uncapitalize<StringType>`].这些都可以在[官方文档](https://www.typescriptlang.org/docs/handbook/utility-types.html)中可以看到具体的使用案例
+
+# 2. 深入理解 typescript
+
+## typescript 项目
+
+### 编译上下文
+
+1. tsconfig.json
+   通过使用 tsconfig.json，用来给文件分组，告诉 TypeScript 哪些文件是有效的，哪 些是无效的。除了有效文件所携带信息外，编译上下文也包含了有哪些编译选项正在使用。
+2. typescript 编译
+   好的 IDE 支持对 TypeScript 的即时编译。但是，如果你想在使用 tsconfig.json 时从命令 行手动运行 TypeScript 编译器，你可以通过以下方式：
+   - 运行 tsc，它会在当前目录或者是父级目录寻找 tsconfig.json 文件。
+   - 运行 tsc -p ./path-to-project-directory 。当然，这个路径可以是绝对路径，也可以是 相对于当前目录的相对路径。 你甚至可以使用 tsc -w 来启用 TypeScript 编译器的观测模式，在检测到文件改动之后， 它将重新编译。
+
+### 声明空间
+
+1. 类型声明空间
+   类型声明空间包含用来当做类型注解的内容
+   ```ts
+   class Foo {}
+   interface Bar {}
+   type Bas = {};
+   ```
+2. 变量声明空间
+   变量声明空间包含可用作变量的内容
+   ```ts
+   class Foo {}
+   const someVar = Foo;
+   const someOtherVar = 123;
+   ```
+3. 模块
+   
+4. 命名空间
+   `namespace`
+5. 动态引入表达式
+   `import()`
