@@ -17,10 +17,6 @@
       - [1.4.4.6. 🚀 范型操作符](#1446--范型操作符)
     - [1.4.5. 🚀 类（Class）](#145--类class)
     - [1.4.6. 🚀 Utility Types (🔥)](#146--utility-types-)
-- [2. 深入理解 typescript](#2-深入理解-typescript)
-  - [typescript 项目](#typescript-项目)
-    - [编译上下文](#编译上下文)
-    - [声明空间](#声明空间)
 
 # 1. TypeScript
 
@@ -47,7 +43,7 @@ TypeScript 可处理已有的 Javascript 代码，并只对其中的 TypeScript 
 - 结构化类型系统
 - 泛型编程
 
-等等很多强大的功能.... [🔘 点我点我](https://www.typescriptlang.org/docs/handbook/2/basic-types.html)
+等等很多强大的功能.... [🔘 点我点我](https://www.typescriptlang.org/docs/handbook/typescript-from-scratch.html)
 
 ## 1.2. 安装 TypeScript 🔧
 
@@ -65,13 +61,19 @@ TypeScript 可处理已有的 Javascript 代码，并只对其中的 TypeScript 
 tsc demo.ts
 ```
 
+实时编译文件：
+
+```bash
+tsc -w demo.ts
+```
+
 编译成功，就会在相同目录下生成一个同名 js 文件
 
 ## 1.3. 项目中使用 TypeScript 📦
 
 > 工欲善其事，必先利其器。 ----《论语·卫灵公》
 
-在项目中使用 typescript 之前，我们得先拥有一个支持 typescript 的编辑器，利其斧，善其事。有了编辑器的支持，才能事半功倍。这里强烈推荐`vscode`。
+在项目中使用 typescript 之前，我们得先拥有一个支持 typescript 的编辑器，利其斧，善其事。有了编辑器的支持，才能事半功倍。这里强烈推荐`vscode`，本身vscode就是ts写的一个electron应用，对ts的支持度很好。如果用用其它编辑器可以安装对应的ts插件。
 
 ### 1.3.1. 从零搭建一个 TS 项目
 
@@ -134,7 +136,7 @@ tsc demo.ts
 npm install @types/jquery
 ```
 
-通过以上名命令安装相关声明，或者自己定义一份.d.ts 文件。@types 里定义很多第三方的类型声明文件。
+通过以上名命令安装相关声明，或者自己定义一份`.d.ts `文件。@types 里定义很多第三方的类型声明文件。
 
 ### 1.3.2. 在 React 项目中使用 TypeScript
 
@@ -156,7 +158,7 @@ yarn create react-app my-app --template TypeScript
 
 ---
 
-> 要创建一个已有的 Create React App 项目，需要执行一下命令：
+> 要创建一个已有的项目支持TypeScript，需要执行一下命令：
 
 ```bash
 npm install --save TypeScript @types/node @types/react @types/react-dom @types/jest
@@ -321,7 +323,11 @@ val.push(33); //编译器报错：Property 'push' does not exist on type 'unknow
   }
 ```
 
-更详细的枚举介绍[点此](https://www.typescriptlang.org/docs/handbook/enums.html)
+如果是数字枚举的时候，可以反向读取。
+
+更详细的枚举介绍：  
+[1.点此](https://www.typescriptlang.org/docs/handbook/enums.html)  
+[2.一文掌握 TS 枚举](https://cloud.tencent.com/developer/article/1659066)
 
 **7.函数类型**  
 函数在平常项目开发中应用的非常频繁。在 typescript 声明一个函数类型:
@@ -1182,39 +1188,3 @@ type T0 = ReturnType<() => string>;
 ```
 
 除了以上这些，还有很多官方实现的类型工具[`InstanceType<Type>`], [`ThisParameterType<Type>`], [`OmitThisParameter<Type>`], [`ThisType<Type>`],[`Lowercase<StringType>`], [`Uppercase<StringType>`], [`Capitalize<StringType>`], [`Uncapitalize<StringType>`].这些都可以在[官方文档](https://www.typescriptlang.org/docs/handbook/utility-types.html)中可以看到具体的使用案例
-
-# 2. 深入理解 typescript
-
-## typescript 项目
-
-### 编译上下文
-
-1. tsconfig.json
-   通过使用 tsconfig.json，用来给文件分组，告诉 TypeScript 哪些文件是有效的，哪 些是无效的。除了有效文件所携带信息外，编译上下文也包含了有哪些编译选项正在使用。
-2. typescript 编译
-   好的 IDE 支持对 TypeScript 的即时编译。但是，如果你想在使用 tsconfig.json 时从命令 行手动运行 TypeScript 编译器，你可以通过以下方式：
-   - 运行 tsc，它会在当前目录或者是父级目录寻找 tsconfig.json 文件。
-   - 运行 tsc -p ./path-to-project-directory 。当然，这个路径可以是绝对路径，也可以是 相对于当前目录的相对路径。 你甚至可以使用 tsc -w 来启用 TypeScript 编译器的观测模式，在检测到文件改动之后， 它将重新编译。
-
-### 声明空间
-
-1. 类型声明空间
-   类型声明空间包含用来当做类型注解的内容
-   ```ts
-   class Foo {}
-   interface Bar {}
-   type Bas = {};
-   ```
-2. 变量声明空间
-   变量声明空间包含可用作变量的内容
-   ```ts
-   class Foo {}
-   const someVar = Foo;
-   const someOtherVar = 123;
-   ```
-3. 模块
-   
-4. 命名空间
-   `namespace`
-5. 动态引入表达式
-   `import()`
