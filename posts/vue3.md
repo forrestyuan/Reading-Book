@@ -226,3 +226,5 @@ const FuncComp = (props, { emits, attrs, slots }) => {
   return () => <div ref={root}>hello world. use jsx in vue3.0</div>;
 };
 ```
+
+vue3 如果用 ts，导出时候要用 defineComponent，这俩是配对的，为了类型的审查正确.[详情](https://my.oschina.net/u/4592325/blog/4683084)
