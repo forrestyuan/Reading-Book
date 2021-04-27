@@ -228,3 +228,96 @@ const FuncComp = (props, { emits, attrs, slots }) => {
 ```
 
 vue3 如果用 ts，导出时候要用 defineComponent，这俩是配对的，为了类型的审查正确.[详情](https://my.oschina.net/u/4592325/blog/4683084)
+
+---
+
+**使用 tsx 来编写组件的注意事项**  
+在自己编写 vue3 的 demo 的时，用 tsx 文件编写了公共组件，在 `<script lang='tsx'>`的 `.vue` 文件中，发现引入的公共组件在 setup 返回的 tsx 中，怎样都无法渲染，这就很头痛，后来移到 tempalte 中才生效。
+
+但是，我又发现，用`.vue`后缀的公共组件，可以在 template 也可以在 `<script lang='tsx'>`的 setup 返回的 tsx 中使用。
+
+结论：用 tsx 编写的组件在以`.vue`为后缀的组件时，只能用于`<template>`中,不用用于 setup 返回的 tsx 组件中。如下例子：
+
+> 1. `Button.tsx`
+
+```tsx
+import { ref, defineComponent, h, Fragment } from "vue";
+const React = { createElement: h, Fragment };
+export default defineComponent({
+  name: "fox-button",
+  props: {
+    msg: {
+      type: String,
+      required: false,
+    },
+  },
+  setup(props, { attrs, emit, slots }) {
+    const count = ref(0);
+    const page = ref(0);
+    return () => (
+      <div>
+        <h1>{props.msg ?? "没有传递msg"}</h1>
+        <button onClick={() => count.value++}>count is: {count.value}</button>
+        <button onClick={() => page.value++}>page is: {page.value}</button>
+      </div>
+    );
+  },
+});
+```
+
+> 2. 在 index.ts
+
+```tsx
+import { App } from "vue";
+import _Button from "./Button";
+
+type WithInstall<T> = T & {
+  install: (app: App) => void;
+};
+function withInstall<T>(comp: any): WithInstall<T> {
+  comp.install = (app: App) => {
+    const { name } = comp;
+    app.component(`${name}`, comp);
+  };
+  return comp;
+}
+const Button = withInstall<typeof _Button>(_Button);
+
+export { Button };
+export default Button;
+```
+
+> 2. 在 HelloWorld.vue 中
+
+```tsx
+<template>
+  <fox-button :msg="'fasdfasd'"></fox-button>
+</template>
+<script lang="ts">
+import { ref, defineComponent } from 'vue'
+import { Button } from './index'
+export default defineComponent({
+  name: 'HelloWorld',
+  components: {
+    'fox-button': Button
+  },
+  props: {
+    msg: {
+      type: String,
+      required: true
+    }
+  },
+
+  setup(props, { attrs, emit, slots }) {
+    console.log(props, attrs, emit, slots)
+    const count = ref(0)
+    const page = ref(0)
+    return {
+      count,
+      page
+    }
+  }
+})
+</script>
+
+```
