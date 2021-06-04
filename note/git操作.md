@@ -8,13 +8,14 @@ rm //删除文件
 ....  
 
 2. git入门指引
+[啥是git分离头指针](https://zhuanlan.zhihu.com/p/158635615)
 * git rm --cached filename //将已添加到暂存区的文件删除，变回已修改的状态
 * 对于git config中的user.name 与 user.email来说，有2个地方可以设置
   * 计算机全局 git config --global（添加）  | git config --global unset ...(删除)
   * 项目区域性 git config --local（添加） | git config --local unset ...(删除)
 * git commit --amend -m '修正上一次提交的title'// 用来修正上次提交的说明
 * git log -number  查看最近number条的提交记录
-3.  .gitignore文件与分支  
+1.  .gitignore文件与分支  
 .gitignore 文件里描述的是提交到远程仓库时被忽略的文件。
     ```bash
     *.a #忽略所有.a结尾的文件
@@ -104,6 +105,13 @@ rm //删除文件
     类似与merge，merge会产生一个新的提交。
 12. 「Git」合并多个 Commit
     👉[点击查看](https://www.jianshu.com/p/964de879904a)
+13. 有时候我们提交完了才发现漏掉了几个文件没有添加，或者提交信息写错了。 此时，可以运行带有--amend 选项的提交命令来重新提交;修补提交最明显的价值是可以稍微改进你最后的提交，而不会让“啊，忘了添加一个文件”或者 “小修补，修正笔误”这种提交信息弄乱你的仓库历史。
+    ```bash
+    $ git commit -m 'initial commit'
+    $ git add forgotten_file
+    $ git commit --amend
+    ```
+
 ### 1. 解决冲突
 ```bash
 #暂存现有代码
