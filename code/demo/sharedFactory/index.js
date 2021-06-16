@@ -1,0 +1,6 @@
+const  BookFactory = require('./shareFactory.js') 
+require ('./index2.js')
+const {books} = BookFactory()
+console.log('pre',books)
+books.push('indexAdd')
+console.log('after', books)
