@@ -75,4 +75,7 @@ Record What I have Read, never let myself down once I need the power!
 [设计达人](https://www.shejidaren.com/)  
 [ELF 灵活可扩展的 HTML5 构建工具](https://elf.aotu.io/)  
 [PDF 操作神奇](https://pdfreal.com/)  
-[overreacted](https://overreacted.io)
+[overreacted](https://overreacted.io)  
+[adagio's blog](https://www.cnblogs.com/L-xmin/)  
+[tangShuagn blog](https://www.tangshuang.net/code)  
+[i18next](https://www.i18next.com/)  
