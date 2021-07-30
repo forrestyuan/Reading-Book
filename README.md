@@ -79,3 +79,4 @@ Record What I have Read, never let myself down once I need the power!
 [adagio's blog](https://www.cnblogs.com/L-xmin/)  
 [tangShuagn blog](https://www.tangshuang.net/code)  
 [i18next](https://www.i18next.com/)  
+[Hackernoon](https://hackernoon.com/tagged/javascript)  

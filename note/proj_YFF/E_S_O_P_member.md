@@ -1,14 +1,10 @@
-1. 项目中使用了mobx作为react的数据管理，虽然mobx管理的数据的变化可以使组件更新，但是，当useEffect、useCallback等hooks使用mobx管理的数据的时候，是不会使页面更新的。解决方法，可以使用context将mobx管理的数据封装一遍。
+1. 在较旧的JavaScript环境中使用MobX(看mobx文档-配置栏)
+
+默认情况下，MobX使用Proxy来获得最佳性能和兼容性。但是在较旧的JavaScript引擎Proxy上不可用 (请查看 Proxy support)。例如Internet Explorer（Edge之前），Node.js <6，iOS <10，RN 0.59之前的Android或iOS上的Android。
+
+在这种情况下，MobX可以回退到与ES5兼容的实现，该实现几乎相同地工作，尽管不使用Proxy有一些限制limitations without Proxy support。您将必须通过配置明确启用降级方案 useProxies:
 ```js
-import React from 'react'
+import { configure } from "mobx"
 
-export function createStore<T>(
-  ClassFactory: new () => T,
-): [() => T, T, React.Context<T>] {
-  const store = new ClassFactory()
-  const context = React.createContext(store)
-  const useStore = () => React.useContext(context)
-  return [useStore, store, context]
-}
-
+configure({ useProxies: "never" }) // Or "ifavailable".
 ```
