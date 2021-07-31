@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import {BrowserRouter, Route, Link} from 'react-router-dom'
 import Table from './pages/Table.js'
 import Drag from './pages/Drag.js'
+import Animation from './pages/Animation'
 
 ReactDOM.render(
   <div className="container">
@@ -19,7 +20,7 @@ ReactDOM.render(
           <Route path="/table"><Table/></Route>
           <Route path="/drag"><Drag/></Route>
           <Route path="/form"><Table/></Route>
-          <Route path="/animation"><Table/></Route>
+          <Route path="/animation"><Animation/></Route>
         </BrowserRouter>
       </div>
     </div>
