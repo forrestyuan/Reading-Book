@@ -52,3 +52,20 @@ console.log(twoSum2([2, 11, 2, 15], 4));
 console.log(twoSum2([2, 11, 2, 15], 13));
 console.log(twoSum2([-2, 4, 2, 90], 0));
 console.log(twoSum2([-2, -4, 2, 90], -6));
+
+// 2021 复做
+function twoNumsSum(nums, target){
+  let obj = {}
+  for(let i = 0; i < nums.length; i++){
+      if(target >= nums[i] ){
+       obj[target - nums[i]] = i
+      }
+  }
+  for(let j = 0; j < nums.length; j++){
+      let findVal = obj[nums[j]]
+      if(findVal >= 0 && findVal !== j){
+          return j > findVal ? [findVal, j] : [j, findVal]
+      }
+  }
+  return [-1, -1]
+}
