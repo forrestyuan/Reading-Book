@@ -70,3 +70,40 @@ setTimeout
 ```
 
 await 就是让出线程，其后的代码放入微任务队列（不会再多一次放入的过程），就这么简单了。
+
+### 题目 一：
+
+```js
+setTimeout(function () {
+  console.log('1');
+}, 0);
+async function async1() {
+  console.log('2');
+  const data = await async2();
+  console.log('3');
+  return data;
+}
+async function async2() {
+  return new Promise((resolve) => {
+    console.log('4');
+    resolve('async2的结果');
+  }).then((data) => {
+    console.log('5');
+    return data;
+  });
+}
+async1().then((data) => {
+  console.log('6');
+  console.log(data);
+});
+new Promise(function (resolve) {
+  console.log('7');
+  //   resolve()
+}).then(function () {
+  console.log('8');
+});
+
+/*
+ * 输出结果：2，4，7，5，3，6，async2的结果，1
+ */
+```
