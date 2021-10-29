@@ -9,7 +9,7 @@ var removeDuplicates = function(nums) {
     if(nums[cur] !== nums[i]){
       cur++;
       nums[cur] = nums[i]
-    } 
+    }
   }
   return cur + 1;
 };
@@ -280,7 +280,7 @@ console.log(
 
 //---------------------------------------------------------
 //旋转图像
-
+/*
 var rotate = function (matrix) {
   if (matrix.length === 1 && matrix[0].length === 1) return matrix;
   let len = matrix.length;
@@ -299,3 +299,96 @@ var rotate = function (matrix) {
 };
 
 console.log(rotate([[5,1,9,11],[2,4,8,10],[13,3,6,7],[15,14,12,16]]))
+*/
+
+
+//---------------------------------------------------------
+//反转字符串
+/*
+var reverseString = function (s) {
+  for (let i = 0, j = s.length - 1; i < j; ++i, --j) {
+    let temp = s[i];
+    s[i] = s[j];
+    s[j] = temp;
+  }
+  return s;
+};
+
+console.log(reverseString(["H", "a", "n", "n", "a", "h"]))
+console.log(reverseString(["h", "e", "l", "l", "o"]))
+*/
+
+//---------------------------------------------------------
+//字符串中的第一个唯一字符
+/*
+var firstUniqChar = function (s) {
+  let obj = {};
+  for (let i = 0; i < s.length; i++) {
+    obj[s[i]] = obj[s[i]] ? obj[s[i]] + 1 : 1;
+  }
+
+  for (let i = 0; i < s.length; i++) {
+    if (obj[s[i]] === 1) return i;
+  }
+  return -1;
+};
+
+console.log(firstUniqChar("leetcode"))
+console.log(firstUniqChar("loveleetcode"))
+*/
+
+//---------------------------------------------------------
+//有效的字母异位词
+/*
+var isAnagram = function (s, t) {
+  if (s.length !== t.length) return false;
+  if (s.length === 1 && t.length === 1) return s[0] === t[0];
+  let map = {}
+  for (let i = 0; i < s.length; i++) {
+    let ch = s[i];
+    map[ch] = map[ch] ? map[ch] + 1 : 1;
+  }
+  console.log(map)
+  for (let j = 0; j < t.length; j++) {
+    let tch = t[j];
+    if (map[tch]) {
+      --map[tch]
+    } else {
+      return false
+    }
+    console.log(map)
+  }
+  return true;
+};
+
+console.log(isAnagram("anagram", "nagaram"))
+console.log(isAnagram("rat", "car"))
+console.log(isAnagram("aacc", "ccac"))
+
+*/
+
+//---------------------------------------------------------
+//验证回文串
+var isPalindrome = function (s) {
+  let isValid = true;
+  if (s.length < 2) return isValid;
+  let i = 0, j = s.length - 1;
+  while (i <= j) {
+    if (!judgeValidChar(s[i])) { ++i; continue; }
+    if (!judgeValidChar(s[j])) { --j; continue; }
+    if (s[i].toLowerCase() !== s[j].toLowerCase()) {
+      return false;
+    }
+    ++i;
+    --j;
+  }
+  return isValid;
+};
+
+var judgeValidChar = function (chr) {
+  chr = chr.toLowerCase().charCodeAt(0);
+  return chr >= 97 && chr <= 122 || chr >= 48 && chr <= 57
+}
+
+console.log(isPalindrome("A man, a plan, a canal: Panama"))
+console.log(isPalindrome("race a car"))
