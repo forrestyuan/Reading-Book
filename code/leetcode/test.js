@@ -1,7 +1,7 @@
 console.log('start');
-/*
 //---------------------------------------------------------
 //删除排序数组中的重复项目
+/*
 var removeDuplicates = function(nums) {
   if( nums.length <= 1) return nums.length;
   var cur = 0
@@ -18,10 +18,9 @@ var nums = [0,0,1,1,1,2,2,3,3,4];
 console.log(removeDuplicates(nums), nums )
 */
 
-
-/*
 //---------------------------------------------------------
 //买卖股票最佳时机
+/*
  var maxProfit = function(prices) {
     var res = 0;
     if(prices.length <= 1) return res;
@@ -37,9 +36,9 @@ console.log(maxProfit([1,2,3,4,5]))
 console.log(maxProfit([7,6,4,3,1]))
 */
 
-/*
 //---------------------------------------------------------
 //旋转数组
+/*
 var rotate = function(nums, k) {
   if(nums.length <= 1 || k == 0 || k === nums.length) return nums;
   k = k > nums.length ? k%nums.length : k;
@@ -64,9 +63,9 @@ console.log(rotate([1,2,3,4,5,6,7,8], 4))
 console.log(rotate([1,2], 5))
 */
 
-/*
 //---------------------------------------------------------
 //存在重复元素
+/*
 var containsDuplicate = function(nums) {
   let obj = {};
   for(var i = 0; i<nums.length; i++){
@@ -116,9 +115,9 @@ console.log(containsDuplicate([1,1,1,3,3,4,3,2,4,2]))
 console.log(containsDuplicate([1,2,3,4]))
 */
 
-/*
 //---------------------------------------------------------
 //只出现一次的数字
+/*
 var singleNumber = function(nums) {
   if(nums.length < 2) return nums[0];
   var res = 0;
@@ -133,9 +132,101 @@ console.log(singleNumber([2,2,1]))
 
 //---------------------------------------------------------
 //两个数的交集
+/*
 var intersect = function (nums1, nums2) {
   if (nums1.length === 0 || nums2.length === 0) return [];
-  
+  var res = [];
+  var maps = {};
+  for (var i = 0; i < nums1.length; i++) {
+    var val = maps[nums1[i]];
+    maps[nums1[i]] = val >= 0 ? val + 1 : 1;
+  }
+
+  for (var j = 0; j < nums2.length; j++) {
+    var mapsData = maps[nums2[j]];
+    if (mapsData > 0) {
+      res.push(nums2[j]);
+      maps[nums2[j]] = mapsData - 1;
+    }
+  }
+  return res;
 };
 
-console.log(intersect([1,2,2,1],[2,2]))
+console.log(intersect([1, 2, 2, 1], [2, 2]));
+console.log(intersect([4, 9, 5], [9, 4, 9, 8, 4]));
+console.log(intersect([1, 2], [1, 1]));
+console.log(intersect([3, 1, 2], [1, 1]));
+*/
+
+//---------------------------------------------------------
+//加一
+/*
+var plusOne = function(digits) {
+   revers(digits)
+   var addNext = 0;
+   digits[0] +=1;
+  for(var i = 0; i < digits.length ; i++){
+    var val = digits[i] + addNext;
+    digits[i] = val >= 10 ? val - 10 : val
+    addNext = val >= 10 ? 1 : 0;
+    if(i + 1 === digits.length && addNext === 1){
+      digits.push(0)
+    }
+  }
+  revers(digits)
+  return digits
+};
+var revers = function(arr){
+  for(var i = 0; i < arr.length; i++){
+    var end = arr.length - i - 1
+    if(i < arr.length - i - 1){
+      arr[i] = arr[i] ^ arr [end]
+      arr[end] = arr[i] ^ arr [end]
+      arr[i] = arr[i] ^ arr [end]
+    }
+  }
+}
+
+console.log(plusOne([1,2,3]))
+console.log(plusOne([1,2,9]))
+console.log(plusOne([9]))
+console.log(plusOne([0]))
+console.log(plusOne([9,9,9,9]))
+*/
+
+//---------------------------------------------------------
+//移动零
+var moveZeroes = function (nums) {
+  if (nums.length < 2) return nums;
+  var start = 0;
+  var end = start + 1;
+
+  while (start < nums.length) {
+    // 如果start不为0
+    if (nums[start] !== 0) {
+      start++;
+      end = start + 1;
+    } else {
+      if (end >= nums.length) {
+        start++;
+        end = start + 1;
+      } else {
+        if (nums[end] !== 0) {
+          swap(nums, start, end);
+        } else {
+          end++;
+        }
+      }
+    }
+  }
+  return nums;
+};
+var swap = function (nums, sub1, sub2) {
+  nums[sub1] = nums[sub1] ^ nums[sub2];
+  nums[sub2] = nums[sub1] ^ nums[sub2];
+  nums[sub1] = nums[sub1] ^ nums[sub2];
+};
+console.log(moveZeroes([0, 1, 0, 3, 12]));
+console.log(moveZeroes([0, 0, 0, 0, 12]));
+console.log(moveZeroes([0, 12]));
+console.log(moveZeroes([13, 1, 3, 0, 5, 6, 0, 12]));
