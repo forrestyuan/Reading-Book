@@ -1,7 +1,8 @@
-console.log('start');
-//---------------------------------------------------------
-// 外观数列
-var countAndSay = function (n) {
+/**
+ * @param {number} n
+ * @return {string}
+ */
+ var countAndSay = function (n) {
   if (n === 1) return '1';
   let str = countAndSay(n - 1);
   let val = '';
