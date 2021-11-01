@@ -1,5 +1,15 @@
-console.log('start');
-//---------------------------------------------------------
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @param {number} n
+ * @return {ListNode}
+ */
 // 删除链表的倒数第N个节点
 var removeNthFromEnd = function (head, n) {
   if (head.next === null) return null;
