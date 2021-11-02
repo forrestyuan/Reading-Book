@@ -1,37 +1,11 @@
 console.log('start');
 //---------------------------------------------------------
-// 删除链表的倒数第N个节点
-var removeNthFromEnd = function (head, n) {
-  if (head.next === null) return null;
-  let count = 2;
-  let preCount = -1;
-  let pre = null;
-  let tail = head.next;
-
-  while (true) {
-    if (tail.next === null) {
-      if (preCount + 1 === (count - n)) {
-        if (pre === null) {
-          pre = head;
-          let tmp = pre.next;
-          pre.val = tmp.val
-          pre.next = pre.next.next === null ? null : pre.next.next;
-        } else if (pre.next.next === null) {
-          pre.next = null
-        } else {
-          pre.next = pre.next.next;
-        }
-        break;
-      } else {
-        pre = pre === null ? head : pre.next;
-        ++preCount;
-      }
-    } else {
-      ++count;
-      tail = tail.next;
-    }
-  }
-  return head;
+// 反转链表
+var reverseList = function(head) {
+  if(head === null) return null;
+  let pre = head;
+  let node = reverseList(head.next);
+  
 };
 
 
@@ -51,4 +25,4 @@ let node = {
     }
   }
 }
-console.log(JSON.stringify(removeNthFromEnd(node, 3)))
+console.log((reverseList(node)))
