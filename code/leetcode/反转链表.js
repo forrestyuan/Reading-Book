@@ -33,7 +33,17 @@ var reverseList = function(head) {
   head.next = null;
   return node;
 };
-
+//迭代的方式
+var reversList = function(head){
+  let pre = null;
+  while(head != null){
+    let tail = head.next;
+    head.next = pre;
+    pre = head;
+    head = tail;
+  }
+  return pre;
+}
 
 let node = {
   val: 1,
