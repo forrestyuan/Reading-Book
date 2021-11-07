@@ -1,27 +1,26 @@
 console.log('开始运行');
 //---------------------------------------------------------
-var isValidBST = function (root) {
-  return loopTree(root, Number.MIN_SAFE_INTEGER, Number.MAX_SAFE_INTEGER)
+var merge = function (nums1, m, nums2, n) {
+  let a = 0, b = 0;
+  while (a < m + n) {
+    if (nums1[a] > nums2[b]) {
+      swap(nums1, a, nums2, b)
+      console.log(nums1)
+    } else if (nums1[a] === 0) {
+      nums1[a] = nums2[b]
+      b++;
+      console.log(nums1)
+    }
+    a++
+  }
 };
 
-let loopTree = function (root, min, max) {
-  if (root === null) return true;
-  console.log(root.val, min, max)
-  if (root.val <= min || root.val >= max) return false
-  return loopTree(root.left, min, root.val) && loopTree(root.right, root.val, max)
+var swap = function (nums, a, nums2, b) {
+  nums[a] = nums[a] ^ nums2[b];
+  nums2[b] = nums[a] ^ nums2[b];
+  nums[a] = nums[a] ^ nums2[b];
 }
-let node = {
-  val: 2,
-  left: {
-    val: 1,
-    right: null,
-    left: null
-  },
-  right: {
-    val: 3,
-    right: null,
-    left: null
-  },
-};
-
-console.log(isValidBST(node))
+let nums1 = [4, 5, 6, 0, 0, 0];
+let nums2 = [1, 2, 3];
+console.log(merge(nums1, 3, nums2, 3))
+console.log(nums1)
